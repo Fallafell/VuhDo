@@ -52,7 +52,7 @@ VUHDO_I18N_TT_LEVEL = "Уровень ";
 -- VuhDoPanel.lua
 -- @EXACT = false
 VUHDO_I18N_CHOOSE = "Выбрать";
-VUHDO_I18N_DRAG = "Тащить";
+VUHDO_I18N_DRAG = "Перетащи";
 VUHDO_I18N_REMOVE = "Удалить";
 VUHDO_I18N_ME = "меня!";
 VUHDO_I18N_TYPE = "Тип";
@@ -77,16 +77,16 @@ VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566show, hide, to
 VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566load|r - [Skin],[Arrangement],[Key Layout]";
 VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§[broad]|cffffe566cast, mt|r[s] - передать список основных танков рейду";
 VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566role|r - сбросить роли игроков";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "|n|cffffe566ab|r[out] - про аддон";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566aegis x|r - Установить чувствительность обнаружения Щитов ДЦ";
 VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566help,?|r - список данных команд\n";
 
-VUHDO_I18N_BAD_COMMAND = "Некорректный аргумент! Введите '/vuhdo help' или '/vd ?' для получения списка команд.";
+VUHDO_I18N_BAD_COMMAND = "Плохой аргумент! Введите '/vuhdo help' или '/vd ?' для получения списка команд.";
 VUHDO_I18N_CHAT_SHOWN = "|cffffe566показана|r.";
 VUHDO_I18N_CHAT_HIDDEN = "|cffffe566скрыта|r.";
 VUHDO_I18N_MM_ICON = "Иконка у миникарты: ";
 VUHDO_I18N_MTS_BROADCASTED = "Основные танки переданы в рейд";
-VUHDO_I18N_PANELS_SHOWN = "Панель исцеления: |cffffe566показана|r.";
-VUHDO_I18N_PANELS_HIDDEN = "Панель исцеления: |cffffe566скрыта|r.";
+VUHDO_I18N_PANELS_SHOWN = "Панель исцеления: |cffffe566shown|r.";
+VUHDO_I18N_PANELS_HIDDEN = "Панель исцеления: |cffffe566hidden|r.";
 VUHDO_I18N_LOCK_PANELS_PRE = "Позиция панели: ";
 VUHDO_I18N_LOCK_PANELS_LOCKED = "|cffffe566закреплена|r.";
 VUHDO_I18N_LOCK_PANELS_UNLOCKED = "|cffffe566откреплена|r.";
@@ -97,7 +97,7 @@ VUHDO_I18N_PANELS_RESET = "Позиция панели сброшена.";
 -- @EXACT = false
 VUHDO_I18N_ROLE = "Роль";
 VUHDO_I18N_PRIVATE_TANK = "Личный танк";
-VUHDO_I18N_SET_BUFF = "Назначьте баф";
+VUHDO_I18N_SET_BUFF = "Назначте баф";
 
 
 -- Minimap
@@ -116,9 +116,9 @@ VUHDO_I18N_BROADCAST_MTS = "Передать Главных Танков";
 -- Buff categories
 -- @EXACT = false
 -- Priest
-VUHDO_I18N_BUFFC_FORTITUDE = "01Стойкость";
-VUHDO_I18N_BUFFC_SPIRIT = "02Дух";
-VUHDO_I18N_BUFFC_SHADOW_PROTECTION = "03Защита от темной магии";
+VUHDO_I18N_BUFFC_FORTITUDE = "Стойкость";
+VUHDO_I18N_BUFFC_SPIRIT = "Дух";
+VUHDO_I18N_BUFFC_SHADOW_PROTECTION = "Защита от темной магии";
 
 -- Shaman
 VUHDO_I18N_BUFFC_FIRE_TOTEM = "Тотем огня";
@@ -213,7 +213,7 @@ VUHDO_I18N_MT_NUMBER = "Главный Танк #";
 VUHDO_I18N_ROLE_OVERRIDE = "Исполняемая роль";
 VUHDO_I18N_MELEE_TANK = "Ближний бой - Танк";
 VUHDO_I18N_MELEE_DPS = "Ближний бой - ДД";
-VUHDO_I18N_RANGED_DPS = "Ближний бой - ДД";
+VUHDO_I18N_RANGED_DPS = "Дальний бой - ДД";
 VUHDO_I18N_RANGED_HEALERS = "Дальний бой - Лекарь";
 VUHDO_I18N_AUTO_DETECT = "<автообнаружение>";
 VUHDO_I18N_PROMOTE_ASSIST_MSG_1 = "Произведён |cffffe566";
