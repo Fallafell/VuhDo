@@ -1,3 +1,4 @@
+
 -----------------------------------------------------------------------------------
 local twipe = table.wipe;
 local UnitInRaid = UnitInRaid;
@@ -18,11 +19,14 @@ function VUHDO_dcShieldInitBurst()
 end
 -----------------------------------------------------------------------------------
 
+
+
 local VUHDO_MACRO_NAME_GROUPS = "VuhDoDCShieldData";
 local VUHDO_MACRO_NAME_NAMES = "VuhDoDCShieldNames";
--- local VUHDO_MAX_MACRO_UNITS = 41; -- 40 raid + player (*2 = 82 for pets)
+--local VUHDO_MAX_MACRO_UNITS = 41; -- 40 raid + player (*2 = 82 for pets)
 local VUHDO_EMPTY_SNIPPET = "[x]";
 local VUHDO_IS_DC_TEMP_DISABLE = false;
+
 
 local VUHDO_CLASS_TO_MACRO = {
 	[VUHDO_ID_WARRIORS] = "W",
@@ -37,6 +41,7 @@ local VUHDO_CLASS_TO_MACRO = {
 	[VUHDO_ID_DEATH_KNIGHT] = "E"
 };
 
+
 local VUHDO_MACRO_TO_CLASS = {
 	["W"] = VUHDO_ID_WARRIORS,
 	["R"] = VUHDO_ID_ROGUES,
@@ -50,12 +55,14 @@ local VUHDO_MACRO_TO_CLASS = {
 	["E"] = VUHDO_ID_DEATH_KNIGHT
 };
 
+
 local VUHDO_ROLE_TO_MACRO = {
 	[VUHDO_ID_MELEE_TANK] = "T",
 	[VUHDO_ID_MELEE_DAMAGE] = "M",
 	[VUHDO_ID_RANGED_DAMAGE] = "R",
 	[VUHDO_ID_RANGED_HEAL] = "H"
 };
+
 
 local VUHDO_MACRO_TO_ROLE = {
 	["T"] = VUHDO_ID_MELEE_TANK,
@@ -64,8 +71,11 @@ local VUHDO_MACRO_TO_ROLE = {
 	["H"] = VUHDO_ID_RANGED_HEAL
 };
 
-local VUHDO_GROUP_SNIPPETS = {};
-local VUHDO_NAME_SNIPPETS = {};
+
+local VUHDO_GROUP_SNIPPETS = { };
+local VUHDO_NAME_SNIPPETS = { };
+
+
 
 --
 local tMacroIndex;
@@ -86,13 +96,16 @@ local function VUHDO_buildSnippetArray()
 				tMacroIndex = tMacroIndex + 41; -- VUHDO_MAX_MACRO_UNITS
 			end
 			VUHDO_GROUP_SNIPPETS[tMacroIndex] =
-				(tInfo["group"] % 10) .. (VUHDO_CLASS_TO_MACRO[tInfo["classId"]] or "_") ..
-					(VUHDO_ROLE_TO_MACRO[tInfo["role"]] or "_");
+				(tInfo["group"] % 10)
+				.. (VUHDO_CLASS_TO_MACRO[tInfo["classId"]] or "_")
+				.. (VUHDO_ROLE_TO_MACRO[tInfo["role"]] or "_");
 
 			VUHDO_NAME_SNIPPETS[tMacroIndex] = strsub((tInfo["name"] or "") .. "   ", 1, 3);
 		end
 	end
 end
+
+
 
 --
 local tMacroString, tMacroNames;
@@ -158,13 +171,15 @@ function VUHDO_mirrorToMacro()
 	end
 end
 
+
+
 --
 local function VUHDO_buildInfoFromSnippet(aUnit, aSnippet, aName)
 	local tInfo;
 	local tClassId;
 
 	if (VUHDO_RAID[aUnit] == nil) then
-		VUHDO_RAID[aUnit] = {};
+		VUHDO_RAID[aUnit] = { };
 	end
 
 	tClassId = VUHDO_MACRO_TO_CLASS[strsub(aSnippet, 2, 2)] or VUHDO_ID_PETS;
@@ -205,6 +220,8 @@ local function VUHDO_buildInfoFromSnippet(aUnit, aSnippet, aName)
 	tInfo["baseRange"] = true;
 end
 
+
+
 --
 function VUHDO_buildRaidFromMacro()
 	local tIndexGroups;
@@ -238,7 +255,7 @@ function VUHDO_buildRaidFromMacro()
 	end
 
 	for tCnt = 0, 81 do -- VUHDO_MAX_MACRO_UNITS * 2 - 1
-		tStrIdx = tCnt * 3 + 2;
+	  tStrIdx = tCnt * 3 + 2;
 		tSnippet = strsub(tMacroGroups, tStrIdx, tStrIdx + 2);
 		tName = strsub(tMacroNames, tStrIdx, tStrIdx + 2)
 		if ((tSnippet or VUHDO_EMPTY_SNIPPET) ~= VUHDO_EMPTY_SNIPPET) then

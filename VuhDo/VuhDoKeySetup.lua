@@ -1,4 +1,7 @@
-VUHDO_FAST_ACCESS_ACTIONS = {};
+
+VUHDO_FAST_ACCESS_ACTIONS = { };
+
+
 
 -- BURST CACHE ---------------------------------------------------
 
@@ -46,13 +49,17 @@ function VUHDO_keySetupInitBurst()
 end
 ----------------------------------------------------
 
+
+
 local VUHDO_REZ_SPELLS_NAMES = {
 	[VUHDO_SPELL_ID_REDEMPTION] = true,
 	[VUHDO_SPELL_ID_ANCESTRAL_SPIRIT] = true,
 	[VUHDO_SPELL_ID_REVIVE] = true,
 	[VUHDO_SPELL_ID_REBIRTH] = true,
-	[VUHDO_SPELL_ID_RESURRECTION] = true
+	[VUHDO_SPELL_ID_RESURRECTION] = true,
 };
+
+
 
 --
 function VUHDO_replaceMacroTemplates(aText, aUnit)
@@ -82,6 +89,7 @@ function VUHDO_replaceMacroTemplates(aText, aUnit)
 	return aText;
 end
 local VUHDO_replaceMacroTemplates = VUHDO_replaceMacroTemplates;
+
 
 --
 local sDropdown;
@@ -114,18 +122,22 @@ local function VUHDO_setupHealButtonAttributes(aModiKey, aButtonId, anAction, aB
 
 	if (VUHDO_SPELL_KEY_ASSIST == tActionLow) then
 		aButton:SetAttribute(aModiKey .. "type" .. aButtonId, "macro");
-		aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId, VUHDO_buildAssistMacroText(aButton["target"]));
+		aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId,
+			VUHDO_buildAssistMacroText(aButton["target"]));
 	elseif (VUHDO_SPELL_KEY_FOCUS == tActionLow) then
 		aButton:SetAttribute(aModiKey .. "type" .. aButtonId, "macro");
-		aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId, VUHDO_buildFocusMacroText(aButton["target"]));
+		aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId,
+			VUHDO_buildFocusMacroText(aButton["target"]));
 
 	elseif (VUHDO_SPELL_KEY_TARGET == tActionLow) then
 		aButton:SetAttribute(aModiKey .. "type" .. aButtonId, "macro");
-		aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId, VUHDO_buildTargetMacroText(aButton["target"]));
-	elseif (VUHDO_SPELL_KEY_MENU == tActionLow or VUHDO_SPELL_KEY_TELL == tActionLow) then
+		aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId,
+			VUHDO_buildTargetMacroText(aButton["target"]));
+	elseif (VUHDO_SPELL_KEY_MENU == tActionLow
+		or VUHDO_SPELL_KEY_TELL == tActionLow) then
 		aButton:SetAttribute(aModiKey .. "type" .. aButtonId, nil);
 	elseif (VUHDO_SPELL_KEY_DROPDOWN == tActionLow) then
-		aButton:SetAttribute(aModiKey .. "type" .. aButtonId, "VUHDO_contextMenu");
+		aButton:SetAttribute(aModiKey .."type" .. aButtonId, "VUHDO_contextMenu");
 
 		VUHDO_contextMenu = function()
 			sDropdown = nil;
@@ -173,11 +185,11 @@ local function VUHDO_setupHealButtonAttributes(aModiKey, aButtonId, anAction, aB
 			tBaseSpell = strtrim(anAction);
 			tSpellInfo = GetSpellInfo(tBaseSpell);
 			if (tSpellInfo ~= nil or (VUHDO_IN_COMBAT_RELOG and VUHDO_FAST_ACCESS_ACTIONS[anAction] == "S")) then
+				-- Cleansing charmed players is an offensive thing to do
 				if (VUHDO_REZ_SPELLS_NAMES[tBaseSpell] ~= nil) then
 					aButton:SetAttribute(aModiKey .. "type" .. aButtonId, "spell");
 					aButton:SetAttribute(aModiKey .. "spell" .. aButtonId, tBaseSpell);
 					return;
-					-- Cleansing charmed players is an offensive thing to do
 				elseif (VUHDO_BUFF_REMOVAL_SPELLS[tBaseSpell] ~= nil) then
 					aButton:SetAttribute(aModiKey .. "type" .. aButtonId, "macro");
 					aButton:SetAttribute(aModiKey .. "macrotext" .. aButtonId,
@@ -199,12 +211,14 @@ local function VUHDO_setupHealButtonAttributes(aModiKey, aButtonId, anAction, aB
 	end
 end
 
+
+
 -- Parse and interpret action-type
 local tPreAction;
 local tTarget;
 local tIndex;
 local tSpellDescr;
--- local tInfo;
+--local tInfo;
 local tIsWheel;
 local tHostSpell;
 function VUHDO_setupAllHealButtonAttributes(aButton, aUnit, anIsDisable, aForceTarget, anIsTgButton)
@@ -216,13 +230,17 @@ function VUHDO_setupAllHealButtonAttributes(aButton, aUnit, anIsDisable, aForceT
 	end
 
 	if (aButton:GetAttribute("vd_tt_hook") == nil and not anIsTgButton and VUHDO_BUTTON_CACHE[aButton] ~= nil) then
-		aButton:HookScript("OnEnter", function(self)
-			VuhDoActionOnEnter(self);
-		end);
+		aButton:HookScript("OnEnter",
+			function(self)
+				VuhDoActionOnEnter(self);
+			end
+		);
 
-		aButton:HookScript("OnLeave", function(self)
-			VuhDoActionOnLeave(self);
-		end);
+		aButton:HookScript("OnLeave",
+			function(self)
+				VuhDoActionOnLeave(self);
+			end
+		);
 
 		aButton:SetAttribute("vd_tt_hook", true);
 	end
@@ -252,11 +270,11 @@ function VUHDO_setupAllHealButtonAttributes(aButton, aUnit, anIsDisable, aForceT
 	tIsWheel = false;
 	for tIndex, tSpellDescr in pairs(VUHDO_SPELLS_KEYBOARD["WHEEL"]) do
 		tHostSpell = VUHDO_SPELLS_KEYBOARD["HOSTILE_WHEEL"][tIndex][3];
-		if ((tSpellDescr[3] ~= nil and strlen(strtrim(tSpellDescr[3])) > 0) or
-			(tHostSpell ~= nil and strlen(strtrim(tHostSpell)) > 0)) then
+		if ( (tSpellDescr[3] ~= nil and strlen(strtrim(tSpellDescr[3])) > 0)
+			or (tHostSpell ~= nil     and strlen(strtrim(tHostSpell)) > 0) ) then
 
 			tIsWheel = true;
-			VUHDO_setupHealButtonAttributes("", tSpellDescr[2], tSpellDescr[3], aButton, anIsTgButton, tIndex);
+			VUHDO_setupHealButtonAttributes("", tSpellDescr[2] , tSpellDescr[3], aButton, anIsTgButton, tIndex);
 		end
 	end
 
@@ -296,6 +314,7 @@ function VUHDO_setupAllHealButtonAttributes(aButton, aUnit, anIsDisable, aForceT
 			]=]);
 		end
 
+
 		aButton:SetAttribute("_onleave", [=[
 			self:ClearBindings();
 		]=]);
@@ -310,6 +329,8 @@ function VUHDO_setupAllHealButtonAttributes(aButton, aUnit, anIsDisable, aForceT
 	end
 end
 local VUHDO_setupAllHealButtonAttributes = VUHDO_setupAllHealButtonAttributes;
+
+
 
 --
 local tSpellDescr;
@@ -328,15 +349,21 @@ local function VUHDO_setupAllButtonsTo(aButton, aSpellName)
 	end
 end
 
+
+
 --
 function VUHDO_setupAllTargetButtonAttributes(aButton, aUnit)
 	VUHDO_setupAllHealButtonAttributes(aButton, aUnit .. "target", false, false, true);
 end
 
+
+
 --
 function VUHDO_setupAllTotButtonAttributes(aButton, aUnit)
 	VUHDO_setupAllHealButtonAttributes(aButton, aUnit .. "targettarget", false, false, true);
 end
+
+
 
 --
 function VUHDO_disableActions(aButton)
@@ -344,6 +371,8 @@ function VUHDO_disableActions(aButton)
 	aButton:Hide(); -- For clearing mouse-wheel click bindings
 	aButton:Show();
 end
+
+
 
 --
 local tIsShadowFrom, tIsImproved;
@@ -353,6 +382,8 @@ local function VUHDO_isShadowForm()
 	return tIsShadowFrom or tIsImproved;
 end
 
+
+
 --
 local tCursorItemType;
 local tAbilities;
@@ -360,8 +391,8 @@ local tUnit;
 local tInfo;
 local tVariants, tMaxVariant;
 function VUHDO_setupSmartCast(aButton)
-	if (InCombatLockdown() or UnitIsDeadOrGhost("player") or
-		(VUHDO_PLAYER_CLASS == "PRIEST" and GetShapeshiftForm() ~= 0 and not VUHDO_isShadowForm())) then
+	if (InCombatLockdown() or UnitIsDeadOrGhost("player")
+		or (VUHDO_PLAYER_CLASS == "PRIEST" and GetShapeshiftForm() ~= 0 and not VUHDO_isShadowForm())) then
 		return false;
 	end
 
@@ -370,7 +401,7 @@ function VUHDO_setupSmartCast(aButton)
 
 	if (tInfo == nil or not tInfo["baseRange"]) then
 		return false;
-	end
+	end;
 	-- Trade?
 	tCursorItemType, _, _ = GetCursorInfo();
 	if ("item" == tCursorItemType or "money" == tCursorItemType) then
@@ -388,8 +419,7 @@ function VUHDO_setupSmartCast(aButton)
 				VUHDO_setupAllButtonsTo(aButton, tMainRes);
 				return true;
 			else
-				UIErrorsFrame:AddMessage(VUHDO_I18N_RESS_ERR_1 .. UnitName(tUnit) .. VUHDO_I18N_RESS_ERR_2, 1, 0.1, 0.1,
-					1);
+				UIErrorsFrame:AddMessage(VUHDO_I18N_RESS_ERR_1 .. UnitName(tUnit) .. VUHDO_I18N_RESS_ERR_2, 1, 0.1, 0.1, 1);
 				return false;
 			end
 		end
@@ -411,9 +441,10 @@ function VUHDO_setupSmartCast(aButton)
 		tVariants = tInfo["mibuvariants"];
 		VUHDO_setupAllButtonsTo(aButton, VUHDO_getBuffVariantSingleTarget(tVariants)[1]);
 		tMaxVariant = VUHDO_getBuffVariantMaxTarget(tVariants)[1];
-		if ((VUHDO_buffWatchGetNumLow(tMaxVariant) >= VUHDO_BUFF_SETTINGS["CONFIG"]["AT_LEAST_MISSING"] and "smart" ==
-			VUHDO_BUFF_SETTINGS["CONFIG"]["GROUP_SPELL_VERSION"]) or "always" ==
-			VUHDO_BUFF_SETTINGS["CONFIG"]["GROUP_SPELL_VERSION"]) then
+		if ((VUHDO_buffWatchGetNumLow(tMaxVariant) >= VUHDO_BUFF_SETTINGS["CONFIG"]["AT_LEAST_MISSING"]
+			   and "smart" == VUHDO_BUFF_SETTINGS["CONFIG"]["GROUP_SPELL_VERSION"]
+				)
+				or "always" == VUHDO_BUFF_SETTINGS["CONFIG"]["GROUP_SPELL_VERSION"]) then
 
 			VUHDO_setupHealButtonAttributes("", "2", tMaxVariant, aButton, false);
 		else

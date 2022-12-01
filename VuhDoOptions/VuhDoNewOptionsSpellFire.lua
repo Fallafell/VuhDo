@@ -18,7 +18,7 @@ function VUHDO_initKeyLayoutComboModel()
 		end
 	);
 
-	tinsert(VUHDO_KEY_LAYOUT_COMBO_MODEL, 1, {"", " Пусто" });
+	tinsert(VUHDO_KEY_LAYOUT_COMBO_MODEL, 1, {"", " -- none --" });
 end
 
 
@@ -48,7 +48,7 @@ function VUHDO_keyLayoutSpecOnClick(aCheckButton, aSpecId)
 			--VUHDO_Msg("Removed default layout for Spec #" .. aSpecId .. ".");
 		end
 	else
-		VUHDO_Msg("Выберите набор клавиш (если есть).", 1, 0.4, 0.4);
+		VUHDO_Msg("Please select a key layout first.", 1, 0.4, 0.4);
 	end
 end
 
@@ -57,7 +57,7 @@ end
 --
 function VUHDO_deleteKeyLayoutCallback(aDecision)
 	if (VUHDO_YES == aDecision) then
-		VUHDO_Msg("Удалено \"" .. VUHDO_CURR_LAYOUT .. "\".");
+		VUHDO_Msg("Deleted key layout \"" .. VUHDO_CURR_LAYOUT .. "\".");
 		VUHDO_SPELL_LAYOUTS[VUHDO_CURR_LAYOUT] = nil;
 		VUHDO_CURR_LAYOUT = "";
 		VUHDO_SPEC_LAYOUTS["selected"] = "";
@@ -73,11 +73,11 @@ end
 --
 function VUHDO_keyLayoutDeleteOnClick(aButton)
 	if (VUHDO_CURR_LAYOUT ~= nil and VUHDO_CURR_LAYOUT ~= "") then
-		VuhDoYesNoFrameText:SetText("Удалить \"" .. VUHDO_CURR_LAYOUT .. "\"?");
+		VuhDoYesNoFrameText:SetText("Really delete key layout \"" .. VUHDO_CURR_LAYOUT .. "\"?");
 		VuhDoYesNoFrame:SetAttribute("callback", VUHDO_deleteKeyLayoutCallback);
 		VuhDoYesNoFrame:Show();
 	else
-		VUHDO_Msg("Выберите набор клавиш (если есть).", 1, 0.4, 0.4);
+		VUHDO_Msg("Please select a key layout first.", 1, 0.4, 0.4);
 	end
 end
 
@@ -97,11 +97,11 @@ end
 --
 function VUHDO_keyLayoutApplyOnClick(aButton)
 	if (VUHDO_CURR_LAYOUT ~= nil and VUHDO_CURR_LAYOUT ~= "") then
-		VuhDoYesNoFrameText:SetText("Перезаписать?");
+		VuhDoYesNoFrameText:SetText("This will overwrite current\nkey layout. Continue?");
 		VuhDoYesNoFrame:SetAttribute("callback", VUHDO_applyKeyLayoutCallback);
 		VuhDoYesNoFrame:Show();
 	else
-		VUHDO_Msg("Выберите набор клавиш (если есть).", 1, 0.4, 0.4);
+		VUHDO_Msg("Please select a key layout first.", 1, 0.4, 0.4);
 	end
 end
 
@@ -123,7 +123,7 @@ function VUHDO_saveKeyLayoutCallback(aDecision)
 
 		VUHDO_SPELL_LAYOUTS[VUHDO_CURR_LAYOUT]["HOTS"] = VUHDO_deepCopyTable(VUHDO_PANEL_SETUP["HOTS"]);
 
-		VUHDO_Msg("Набор клавиш сохранён: \"" .. VUHDO_CURR_LAYOUT .. "\"");
+		VUHDO_Msg("Key layout \"" .. VUHDO_CURR_LAYOUT .. "\" successfully saved.");
 		VUHDO_initKeyLayoutComboModel();
 		VUHDO_lnfComboBoxInitFromModel(VuhDoNewOptionsSpellFireStorePanelLayoutCombo);
 		VuhDoNewOptionsSpellFireTriggerWhatPanel:Hide();
@@ -140,12 +140,12 @@ function VUHDO_saveKeyLayoutOnClick(aButton)
 	VUHDO_CURR_LAYOUT = strtrim(tEditBox:GetText());
 
 	if (strlen(VUHDO_CURR_LAYOUT) == 0) then
-		VUHDO_Msg("Введите название!", 1, 0.4, 0.4);
+		VUHDO_Msg("Please enter a key layout name.", 1, 0.4, 0.4);
 		return;
 	end
 
 	if (VUHDO_SPELL_LAYOUTS[VUHDO_CURR_LAYOUT] ~= nil) then
-		VuhDoYesNoFrameText:SetText("Название уже существует " .. VUHDO_CURR_LAYOUT .. " Перезаписать?");
+		VuhDoYesNoFrameText:SetText("A key layout called " .. VUHDO_CURR_LAYOUT .. " already exists. Overwrite?");
 		VuhDoYesNoFrame:SetAttribute("callback", VUHDO_saveKeyLayoutCallback);
 		VuhDoYesNoFrame:Show();
 	else

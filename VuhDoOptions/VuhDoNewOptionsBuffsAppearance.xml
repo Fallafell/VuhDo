@@ -143,7 +143,7 @@
             </Anchors>
             <Layers>
               <Layer>
-                <FontString name="$parentLabel" text="PallyPower" inherits="VuDoDefaultTitleFontTemplate">
+                <FontString name="$parentLabel" text="PallyPower Comm" inherits="VuDoDefaultTitleFontTemplate">
                 </FontString>
               </Layer>
             </Layers>

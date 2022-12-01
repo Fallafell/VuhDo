@@ -41,6 +41,8 @@ VUHDO_HEADER_TEXTS = {
 	[VUHDO_ID_SELF] = VUHDO_I18N_SELF,
 };
 
+
+
 -- For initializing the minimap
 VUHDO_MM_LAYOUT = {
   icon = "interface\\characterframe\\temporaryportrait-female-draenei",
@@ -50,6 +52,11 @@ VUHDO_MM_LAYOUT = {
   tooltip = VUHDO_I18N_MM_TOOLTIP,
   enabled = true
 };
+
+
+
+
+
 
 VUHDO_CUSTOM_ICONS = {
 	{ VUHDO_I18N_CUSTOM_ICON_NONE, nil },
@@ -62,3 +69,6 @@ VUHDO_CUSTOM_ICONS = {
 	{ VUHDO_I18N_CUSTOM_ICON_SKETCHED, "Interface\\AddOns\\VuhDo\\Images\\hot_flat_16_16" },
 	{ VUHDO_I18N_CUSTOM_ICON_RHOMB, "Interface\\AddOns\\VuhDo\\Images\\rhomb" },
 };
+
+
+

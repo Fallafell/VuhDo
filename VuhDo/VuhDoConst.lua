@@ -1,17 +1,17 @@
 
-VUHDO_VERSION = "2.23";
+VUHDO_VERSION = "2.22";
 
 VUHDO_YES = 1;
 VUHDO_NO = 2;
 
-VUHDO_MAX_PANELS = 10; -- Maximum number of Panels, change in VuhDoPanel.XML accordingly
+VUHDO_MAX_PANELS = 10;        -- Maximum number of Panels, change in VuhDoPanel.XML accordingly
 VUHDO_MAX_BUTTONS_PANEL = 51; -- Maximum Number of Buttons per Panel
 VUHDO_MAX_GROUPS_PER_PANEL = 15; -- Maximum number of Models (Groups) per Panel
 
 VUHDO_MAX_MTS = 8;
 
 -- Heal panel operation modes
-VUHDO_MODE_NEUTRAL = 1;	-- bar colors are gradient
+VUHDO_MODE_NEUTRAL = 1;  -- bar colors are gradient
 VUHDO_MODE_EMERGENCY_PERC = 2; -- Top emergency mode, least life percent left (standard raid healing)
 VUHDO_MODE_EMERGENCY_MOST_MISSING = 3; -- Top emergency mode, least most life missing (for spamming greater heals, MTs preffered)
 VUHDO_MODE_EMERGENCY_LEAST_LEFT = 4; -- Top emergency mode, least life left (for raid healing when cyclic ae damage on whole raid)
@@ -66,6 +66,8 @@ VUHDO_ID_VEHICLES = 70;
 VUHDO_ID_SELF = 80;
 
 VUHDO_ID_ALL = 999;
+
+
 --
 -- Members of member types
 --
@@ -76,28 +78,28 @@ VUHDO_ID_TYPE_MEMBERS = {
 	},
 
 	[VUHDO_ID_TYPE_GROUP] = {
-		VUHDO_ID_GROUP_1,
-		VUHDO_ID_GROUP_2,
-		VUHDO_ID_GROUP_3,
-		VUHDO_ID_GROUP_4,
-		VUHDO_ID_GROUP_5,
-		VUHDO_ID_GROUP_6,
-		VUHDO_ID_GROUP_7,
-		VUHDO_ID_GROUP_8,
+	  VUHDO_ID_GROUP_1,
+	  VUHDO_ID_GROUP_2,
+	  VUHDO_ID_GROUP_3,
+	  VUHDO_ID_GROUP_4,
+	  VUHDO_ID_GROUP_5,
+	  VUHDO_ID_GROUP_6,
+	  VUHDO_ID_GROUP_7,
+	  VUHDO_ID_GROUP_8,
 		VUHDO_ID_GROUP_OWN
 	},
 
 	[VUHDO_ID_TYPE_CLASS] = {
-		VUHDO_ID_WARRIORS,
-		VUHDO_ID_ROGUES,
-		VUHDO_ID_HUNTERS,
-		VUHDO_ID_PALADINS,
-		VUHDO_ID_MAGES,
-		VUHDO_ID_WARLOCKS,
-		VUHDO_ID_SHAMANS,
-		VUHDO_ID_DRUIDS,
-		VUHDO_ID_PRIESTS,
-		VUHDO_ID_DEATH_KNIGHT
+	  VUHDO_ID_WARRIORS,
+	  VUHDO_ID_ROGUES,
+	  VUHDO_ID_HUNTERS,
+	  VUHDO_ID_PALADINS,
+	  VUHDO_ID_MAGES,
+	  VUHDO_ID_WARLOCKS,
+	  VUHDO_ID_SHAMANS,
+	  VUHDO_ID_DRUIDS,
+	  VUHDO_ID_PRIESTS,
+	  VUHDO_ID_DEATH_KNIGHT
 	},
 
 	[VUHDO_ID_TYPE_SPECIAL] = {
@@ -133,6 +135,8 @@ VUHDO_SORT_RAID_CLASS = 2;
 VUHDO_SORT_RAID_MAX_HP = 3;
 VUHDO_SORT_RAID_MODELS = 4;
 
+
+
 -- Class IDs by class name
 VUHDO_CLASS_IDS = {
 	["WARRIOR"] = VUHDO_ID_WARRIORS,
@@ -146,6 +150,8 @@ VUHDO_CLASS_IDS = {
 	["PRIEST"] = VUHDO_ID_PRIESTS,
 	["DEATHKNIGHT"] = VUHDO_ID_DEATH_KNIGHT,
 };
+
+
 
 -- Class names by class ID
 VUHDO_ID_CLASSES = {
@@ -161,6 +167,8 @@ VUHDO_ID_CLASSES = {
 	[VUHDO_ID_DEATH_KNIGHT] = "DEATHKNIGHT",
 };
 
+
+
 -- Class IDs by class name
 VUHDO_CLASS_NAMES_ORDERED = {
 	"WARRIOR",
@@ -175,6 +183,8 @@ VUHDO_CLASS_NAMES_ORDERED = {
 	"DEATHKNIGHT"
 };
 
+
+
 -- Action button assignent constant values
 VUHDO_SPELL_KEY_ASSIST = "assist";
 VUHDO_SPELL_KEY_FOCUS = "focus";
@@ -182,6 +192,8 @@ VUHDO_SPELL_KEY_TARGET = "target";
 VUHDO_SPELL_KEY_MENU = "menu";
 VUHDO_SPELL_KEY_TELL = "tell";
 VUHDO_SPELL_KEY_DROPDOWN = "dropdown";
+
+
 
 -- Types of updating unit status by event
 VUHDO_UPDATE_ALL = 1;
@@ -195,7 +207,7 @@ VUHDO_UPDATE_TARGET = 8;
 VUHDO_UPDATE_INC = 9;
 VUHDO_UPDATE_ALIVE = 10;
 VUHDO_UPDATE_EMERGENCY = 11;
--- nur fï¿½r bouquets
+-- nur für bouquets
 VUHDO_UPDATE_MANA = 13;
 VUHDO_UPDATE_THREAT_PERC = 14;
 VUHDO_UPDATE_MOUSEOVER = 15;
@@ -221,6 +233,8 @@ VUHDO_UNIT_POWER_ENERGY = 3;
 VUHDO_UNIT_POWER_HAPPINESS = 4;
 VUHDO_UNIT_POWER_RUNES = 6;
 
+
+
 -- Resurection spells by class
 VUHDO_RESURRECTION_SPELLS = {
 	["PALADIN"] = { VUHDO_SPELL_ID_REDEMPTION },
@@ -229,14 +243,20 @@ VUHDO_RESURRECTION_SPELLS = {
 	["PRIEST"] = { VUHDO_SPELL_ID_RESURRECTION }
 };
 
+
+
 VUHDO_LT_MODE_PERCENT = 1;
 VUHDO_LT_MODE_LEFT = 2;
 VUHDO_LT_MODE_MISSING = 3;
+
+
 
 VUHDO_LT_POS_RIGHT = 1;
 VUHDO_LT_POS_LEFT = 2;
 VUHDO_LT_POS_ABOVE = 3;
 VUHDO_LT_POS_BELOW = 4;
+
+
 
 VUHDO_HEALING_HOTS = {
 -- Priest
@@ -260,6 +280,8 @@ VUHDO_HEALING_HOTS = {
 	[VUHDO_SPELL_ID_MEND_PET] = true,
 };
 
+
+
 --
 VUHDO_EXCLUSIVE_HOTS = {
 	[VUHDO_SPELL_ID_SACRED_SHIELD] = true,
@@ -270,6 +292,9 @@ VUHDO_EXCLUSIVE_HOTS = {
 	[VUHDO_SPELL_ID_GUARDIAN_SPIRIT] = true,
 	[VUHDO_SPELL_ID_PAIN_SUPPRESSION] = true,
 };
+
+
+
 
 VUHDO_MIN_MAX_CONSTRAINTS = 1;
 VUHDO_ENUMERATOR_CONSTRAINTS = 2;

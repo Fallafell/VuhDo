@@ -29,14 +29,18 @@ end
 
 -- BURST CACHE ---------------------------------------------------
 
-local sTopHeightCache = {};
-local sBottomHeightCache = {};
-local sHeaderTotalHeightCache = {};
+
+
+local sTopHeightCache = { };
+local sBottomHeightCache = { };
+local sHeaderTotalHeightCache = { };
 function VUHDO_resetSizeCalcCachesHor()
 	twipe(sTopHeightCache);
 	twipe(sBottomHeightCache);
 	twipe(sHeaderTotalHeightCache);
 end
+
+
 
 -- Returns the total height of optional threat bars
 local tTopSpace;
@@ -63,82 +67,96 @@ local function VUHDO_getAdditionalTopHeight(aPanelNum)
 	return sTopHeightCache[aPanelNum];
 end
 
+
+
 --
 local tHotCfg;
 local tBottomSpace;
 local function VUHDO_getAdditionalBottomHeight(aPanelNum)
 	if (sBottomHeightCache[aPanelNum] == nil) then
-		tBottomSpace = 0;
+  	tBottomSpace = 0;
 
-		-- HoT icons
-		tHotCfg = VUHDO_PANEL_SETUP["HOTS"];
+    -- HoT icons
+  	tHotCfg = VUHDO_PANEL_SETUP["HOTS"];
 
-		if (tHotCfg["radioValue"] == 7 or tHotCfg["radioValue"] == 8) then
-			tBottomSpace = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["barHeight"] *
-			VUHDO_PANEL_SETUP[aPanelNum]["HOTS"]["size"] * 0.01;
+		if  (tHotCfg["radioValue"] == 7 or tHotCfg["radioValue"] == 8) then
+			tBottomSpace = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["barHeight"] * VUHDO_PANEL_SETUP[aPanelNum]["HOTS"]["size"] * 0.01;
 		end
 
-		tNamePos = VUHDO_splitString(VUHDO_PANEL_SETUP[aPanelNum]["ID_TEXT"]["position"], "+");
-		if (strfind(tNamePos[1], "TOP", 1, true) and strfind(tNamePos[2], "BOTTOM", 1, true)) then
-			tNameHeight = VUHDO_PANEL_SETUP[aPanelNum]["ID_TEXT"]["_spacing"];
-			if (tNameHeight ~= nil and tNameHeight > tBottomSpace) then
-				tBottomSpace = tNameHeight;
-			end
-		end
+  	tNamePos = VUHDO_splitString(VUHDO_PANEL_SETUP[aPanelNum]["ID_TEXT"]["position"], "+");
+  	if (strfind(tNamePos[1], "TOP", 1, true) and strfind(tNamePos[2], "BOTTOM", 1, true)) then
+  		tNameHeight = VUHDO_PANEL_SETUP[aPanelNum]["ID_TEXT"]["_spacing"];
+  		if (tNameHeight ~= nil and tNameHeight > tBottomSpace) then
+  			tBottomSpace = tNameHeight;
+  		end
+  	end
 
-		sBottomHeightCache[aPanelNum] = tBottomSpace;
+  	sBottomHeightCache[aPanelNum] = tBottomSpace;
 	end
 
 	return sBottomHeightCache[aPanelNum];
 end
 
+
+
 -- Returns total header width
 local tBarScaling;
 local function VUHDO_getHeaderTotalWidth(aPanelNum)
-	if (VUHDO_isTableHeadersShowing(aPanelNum)) then
-		tBarScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
-		return tBarScaling["headerHeight"] + tBarScaling["headerSpacing"];
-	else
-		return 0;
-	end
+  if (VUHDO_isTableHeadersShowing(aPanelNum)) then
+  	tBarScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
+  	return tBarScaling["headerHeight"] + tBarScaling["headerSpacing"];
+  else
+  	return 0;
+  end
 end
+
+
 
 -- Returns total footer height
 local tBarScaling;
 local function VUHDO_getHeaderFooterTotalWidth(aPanelNum)
-	if (VUHDO_isTableHeaderOrFooter(aPanelNum)) then
-		tBarScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
-		return tBarScaling["headerHeight"] + tBarScaling["headerSpacing"];
-	else
-		return 0;
-	end
+  if (VUHDO_isTableHeaderOrFooter(aPanelNum)) then
+  	tBarScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
+  	return tBarScaling["headerHeight"] + tBarScaling["headerSpacing"];
+  else
+  	return 0;
+  end
 end
+
+
 
 -- Returns total header height
 local tBarScaling;
 function VUHDO_getHeaderWidthHor(aPanelNum)
-	if (VUHDO_isTableHeaderOrFooter(aPanelNum)) then
-		tBarScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
-		return tBarScaling["headerHeight"];
-	else
-		return 0;
-	end
+  if (VUHDO_isTableHeaderOrFooter(aPanelNum)) then
+  	tBarScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
+  	return tBarScaling["headerHeight"];
+  else
+  	return 0;
+  end
 end
+
+
 
 --
 local function VUHDO_getHealButtonHeight(aPanelNum)
-	return VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["barHeight"] + VUHDO_getAdditionalTopHeight(aPanelNum) +
-	VUHDO_getAdditionalBottomHeight(aPanelNum);
+	return VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["barHeight"]
+		+ VUHDO_getAdditionalTopHeight(aPanelNum)
+		+ VUHDO_getAdditionalBottomHeight(aPanelNum);
 end
+
+
 
 -- Returns total header height
 function VUHDO_getHeaderHeightHor(aPanelNum)
-	if (VUHDO_isTableHeaderOrFooter(aPanelNum)) then
-		return VUHDO_getHealButtonHeight(aPanelNum);
-	else
-		return 0;
-	end
+  if (VUHDO_isTableHeaderOrFooter(aPanelNum)) then
+  	return VUHDO_getHealButtonHeight(aPanelNum);
+  else
+  	return 0;
+  end
 end
+
+
 
 -- Returns the Y-offset in Pixels a heal button has within a model (from the top of the models position)
 local tRowNo;
@@ -162,6 +180,9 @@ local function VUHDO_getColumnOffset(aRowNo, aPanelNum)
 	return VUHDO_getHeaderTotalWidth(aPanelNum) + (tRowNo - 1) * tRowStep;
 end
 
+
+
+
 -- Returns the column number a heal button/model will be in (#1 .. #x)
 local tMaxCols;
 local tOfs, tRemain, tFrag;
@@ -180,10 +201,14 @@ local function VUHDO_determineGridRow(aPlaceNum, aPanelNum, aRowNum)
 	end
 end
 
+
+
 -- Returns the row number a model will be in
 local function VUHDO_determineGridColumn(aPlaceNum, aPanelNum)
 	return floor((aPlaceNum - 1) / VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["maxRowsWhenLoose"]) + 1;
 end
+
+
 
 -- returns the number of buttons that the biggest model has in a given row
 local tId;
@@ -215,14 +240,21 @@ local function VUHDO_determineGridColumnMaxBars(aRowNum, aPanelNum)
 	return tMaxBar;
 end
 
+
+
 local function VUHDO_determineGridColumnPlaceBars(aPlaceNum, aRowNum, aPanelNum)
 	return #VUHDO_getGroupMembers(VUHDO_PANEL_DYN_MODELS[aPanelNum][aPlaceNum], aPanelNum, aPlaceNum);
 end
+
+
 
 -- Returns the highest row number for the given panel
 local function VUHDO_determineLastColumn(aPanelNum)
 	return ceil(#VUHDO_PANEL_DYN_MODELS[aPanelNum] / VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["maxRowsWhenLoose"]);
 end
+
+
+
 
 -- Returns the width of the given row in Pixels
 local tHeight;
@@ -240,12 +272,12 @@ local function VUHDO_getColumnWidth(aRowNum, aPanelNum)
 		tCfgPanel = VUHDO_getGroupOrderPanel(aPanelNum, 1);
 		return tHeight + tCfgPanel:GetWidth();
 	else
-		tMaxBarInRow = VUHDO_determineGridColumnMaxBars(aRowNum, aPanelNum);
+	  tMaxBarInRow = VUHDO_determineGridColumnMaxBars(aRowNum, aPanelNum);
 		tHeight = tHeight + VUHDO_getHealButtonWidth(aPanelNum) * tMaxBarInRow;
 
-		if (tMaxBarInRow > 0) then
-			tHeight = tHeight + tBarScaling["columnSpacing"] * (tMaxBarInRow - 1);
-		end
+   	if (tMaxBarInRow > 0) then
+		  tHeight = tHeight + tBarScaling["columnSpacing"] * (tMaxBarInRow - 1);
+	  end
 	end
 
 	if (aRowNum < VUHDO_determineLastColumn(aPanelNum)) then
@@ -254,6 +286,9 @@ local function VUHDO_getColumnWidth(aRowNum, aPanelNum)
 
 	return tHeight;
 end
+
+
+
 
 -- Returns the pixel X-offset of a given model slot
 local tRowY;
@@ -275,6 +310,8 @@ local function VUHDO_getColumnPos(aPlaceNum, aPanelNum)
 	return tRowY;
 end
 
+
+
 -- Returns the pixel Y-offset of a given model slot
 local tColX;
 local tBarScaling;
@@ -291,6 +328,8 @@ local function VUHDO_getRowPos(aPlaceNum, aPanelNum, aRowNo)
 	return tColX;
 end
 
+
+
 --
 local tX, tY, tOffset;
 local tColumnNum, tBarScaling;
@@ -306,6 +345,8 @@ function VUHDO_getHeaderPosHor(aHeaderPlace, aPanelNum)
 
 	return tX, tY;
 end
+
+
 
 --
 local tButtonX;
@@ -324,11 +365,11 @@ function VUHDO_getHealButtonPosHor(aPlaceNum, aRowNo, aPanelNum)
 		tButtonY = tButtonY + VUHDO_INDICATOR_CONFIG["CUSTOM"]["THREAT_BAR"]["HEIGHT"];
 	end
 
+
 	tHots = VUHDO_PANEL_SETUP["HOTS"];
 	if (tHots["radioValue"] == 1) then
 		tHotslots = VUHDO_getNumHotSlots(aPanelNum);
-		tButtonX = tButtonX + VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["barHeight"] *
-		VUHDO_PANEL_SETUP[aPanelNum]["HOTS"]["size"] * 0.01 * tHotslots;
+		tButtonX = tButtonX + VUHDO_PANEL_SETUP[aPanelNum]["SCALING"]["barHeight"] * VUHDO_PANEL_SETUP[aPanelNum]["HOTS"]["size"] * 0.01 * tHotslots;
 	end
 
 	tScaling = VUHDO_PANEL_SETUP[aPanelNum]["SCALING"];
@@ -345,7 +386,7 @@ function VUHDO_getHealButtonPosHor(aPlaceNum, aRowNo, aPanelNum)
 		tGridColumn = VUHDO_determineGridColumn(aPlaceNum, aPanelNum);
 		tColumnWidth = VUHDO_getColumnWidth(tGridColumn, aPanelNum);
 		tNumBars = VUHDO_determineGridColumnPlaceBars(aPlaceNum, tGridColumn, aPanelNum);
-		tCurrWidth = tNumBars * VUHDO_getHealButtonWidth(aPanelNum);
+		tCurrWidth = tNumBars * VUHDO_getHealButtonWidth(aPanelNum) ;
 		tCurrWidth = tCurrWidth + (tNumBars - 1) * tScaling["columnSpacing"] + VUHDO_getHeaderTotalWidth(aPanelNum);
 		tButtonX = tButtonX + (tColumnWidth - tCurrWidth);
 
@@ -357,6 +398,8 @@ function VUHDO_getHealButtonPosHor(aPlaceNum, aRowNo, aPanelNum)
 
 	return tButtonX, tButtonY;
 end
+
+
 
 --
 local tBarScaling;
@@ -383,18 +426,20 @@ function VUHDO_getHealPanelWidthHor(aPanelNum)
 		tHeight = tHeight + (tRows - 1) * tBarScaling["columnSpacing"];
 		return tHeight;
 	else
-		tLastPlace = #VUHDO_PANEL_DYN_MODELS[aPanelNum];
-		tLastHeaderX = VUHDO_getColumnPos(tLastPlace, aPanelNum);
-		tLastRowWidth = VUHDO_getColumnWidth(VUHDO_determineGridColumn(tLastPlace, aPanelNum), aPanelNum);
-		tWidth = tLastHeaderX + tLastRowWidth + tBarScaling["borderGapX"];
+ 		tLastPlace = #VUHDO_PANEL_DYN_MODELS[aPanelNum];
+ 		tLastHeaderX = VUHDO_getColumnPos(tLastPlace, aPanelNum);
+ 		tLastRowWidth =  VUHDO_getColumnWidth(VUHDO_determineGridColumn(tLastPlace, aPanelNum), aPanelNum);
+ 		tWidth = tLastHeaderX + tLastRowWidth + tBarScaling["borderGapX"];
 
-		if (tBarScaling["alignBottom"]) then
-			tWidth = tWidth + VUHDO_getHeaderWidthHor(aPanelNum) + tBarScaling["headerSpacing"];
-		end
+ 		if (tBarScaling["alignBottom"]) then
+ 			tWidth = tWidth + VUHDO_getHeaderWidthHor(aPanelNum) + tBarScaling["headerSpacing"];
+ 		end
 
-		return tWidth;
+ 		return tWidth;
 	end
 end
+
+
 
 --
 local tBarScaling;

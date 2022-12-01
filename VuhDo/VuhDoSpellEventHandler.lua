@@ -1,5 +1,7 @@
 local VUHDO_IS_RESURRECTING = false;
 
+
+
 --
 local string = string;
 local pairs = pairs;
@@ -17,19 +19,21 @@ local VUHDO_initGcd;
 
 local VUHDO_ACTIVE_HOTS;
 local VUHDO_RAID_NAMES;
-local VUHDO_CONFIG = {};
+local VUHDO_CONFIG = { };
 
 function VUHDO_spellEventHandlerInitBurst()
 	VUHDO_sendCtraMessage = VUHDO_GLOBAL["VUHDO_sendCtraMessage"];
 	VUHDO_updateAllHoTs = VUHDO_GLOBAL["VUHDO_updateAllHoTs"];
 	VUHDO_updateAllCyclicBouquets = VUHDO_GLOBAL["VUHDO_updateAllCyclicBouquets"];
-	VUHDO_getResurrectionSpells = VUHDO_GLOBAL["VUHDO_getResurrectionSpells"];
+	VUHDO_getResurrectionSpells	= VUHDO_GLOBAL["VUHDO_getResurrectionSpells"];
 	VUHDO_initGcd = VUHDO_GLOBAL["VUHDO_initGcd"];
 
 	VUHDO_ACTIVE_HOTS = VUHDO_GLOBAL["VUHDO_ACTIVE_HOTS"];
 	VUHDO_RAID_NAMES = VUHDO_GLOBAL["VUHDO_RAID_NAMES"];
 	VUHDO_CONFIG = VUHDO_GLOBAL["VUHDO_CONFIG"];
 end
+
+
 
 --
 function VUHDO_spellcastStop(aUnit)
@@ -40,10 +44,14 @@ function VUHDO_spellcastStop(aUnit)
 end
 local VUHDO_spellcastStop = VUHDO_spellcastStop;
 
+
+
 --
 function VUHDO_spellcastFailed(aUnit, aSpellName)
 	VUHDO_spellcastStop(aUnit, aSpellName);
 end
+
+
 
 --
 local function VUHDO_activateSpellForSpec(aSpecId)
@@ -57,6 +65,8 @@ local function VUHDO_activateSpellForSpec(aSpecId)
 	end
 end
 
+
+
 -- local
 function VUHDO_activateSpecc(aSpeccNum)
 	VUHDO_activateSpellForSpec("" .. aSpeccNum);
@@ -68,13 +78,18 @@ function VUHDO_activateSpecc(aSpeccNum)
 	end
 end
 
+
+
+
 local VUHDO_TALENT_CHANGE_SPELLS = {
 	[VUHDO_SPELL_ID_ACTIVATE_FIRST_TALENT] = true,
 	[VUHDO_SPELL_ID_ACTIVATE_SECOND_TALENT] = true,
 	[VUHDO_SPELL_ID_BUFF_FROST_PRESENCE] = true,
 	[VUHDO_SPELL_ID_BUFF_BLOOD_PRESENCE] = true,
-	[VUHDO_SPELL_ID_BUFF_UNHOLY_PRESENCE] = true
+	[VUHDO_SPELL_ID_BUFF_UNHOLY_PRESENCE] = true,
 }
+
+
 
 --
 function VUHDO_spellcastSucceeded(aUnit, aSpellName)
@@ -99,6 +114,8 @@ function VUHDO_spellcastSucceeded(aUnit, aSpellName)
 	end
 end
 
+
+
 --
 local tTargetUnit;
 local tFirstRes, tSecondRes;
@@ -121,8 +138,8 @@ function VUHDO_spellcastSent(aUnit, aSpellName, aSpellRank, aTargetName)
 
 	-- Resurrection?
 	tFirstRes, tSecondRes = VUHDO_getResurrectionSpells();
-	if ((aSpellName == tFirstRes or aSpellName == tSecondRes) and aTargetName ~= nil and tTargetUnit ~= nil and
-		not UnitIsGhost(tTargetUnit)) then
+	if ((aSpellName == tFirstRes or aSpellName == tSecondRes)
+		and aTargetName ~= nil and tTargetUnit ~= nil and not UnitIsGhost(tTargetUnit)) then
 
 		VUHDO_sendCtraMessage("RES " .. aTargetName);
 		VUHDO_IS_RESURRECTING = true;
@@ -143,7 +160,7 @@ function VUHDO_spellcastSent(aUnit, aSpellName, aSpellRank, aTargetName)
 
 	-- Auto track single target unique spells?
 	if (tUniqueSpells == nil) then
-		tUniqueSpells = {};
+		tUniqueSpells = { };
 
 		local tUnique, tUniqueCategs = VUHDO_getAllUniqueSpells();
 		for _, tSpellName in pairs(tUnique) do
@@ -153,11 +170,12 @@ function VUHDO_spellcastSent(aUnit, aSpellName, aSpellRank, aTargetName)
 
 	tCateg = tUniqueSpells[aSpellName];
 	if (tCateg ~= nil and tTargetUnit ~= nil and not InCombatLockdown()) then
-		if (VUHDO_BUFF_SETTINGS ~= nil and VUHDO_BUFF_SETTINGS[tCateg] ~= nil and aTargetName ~=
-			VUHDO_BUFF_SETTINGS[tCateg].name) then
+		if (VUHDO_BUFF_SETTINGS ~= nil and VUHDO_BUFF_SETTINGS[tCateg] ~= nil and aTargetName ~= VUHDO_BUFF_SETTINGS[tCateg].name) then
 			VUHDO_BUFF_SETTINGS[tCateg].name = aTargetName;
 			VUHDO_reloadBuffPanel();
 		end
 	end
 end
+
+
 

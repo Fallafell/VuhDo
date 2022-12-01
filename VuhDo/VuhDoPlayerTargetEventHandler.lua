@@ -1,5 +1,7 @@
 local pairs = pairs;
 
+
+
 --
 local VUHDO_CURR_PLAYER_TARGET = nil;
 local tTargetUnit, tUnit;
@@ -41,6 +43,8 @@ function VUHDO_updatePlayerTarget()
 	end
 end
 
+
+
 --
 local tAllButtons, tButton, tBorder;
 function VUHDO_barBorderBouquetCallback(aUnit, anIsActive, anIcon, aTimer, aCounter, aDuration, aColor, aBuffName, aBouquetName, anImpact)
@@ -58,6 +62,8 @@ function VUHDO_barBorderBouquetCallback(aUnit, anIsActive, anIcon, aTimer, aCoun
 		end
 	end
 end
+
+
 
 --
 function VUHDO_getCurrentPlayerTarget()

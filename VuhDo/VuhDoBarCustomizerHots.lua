@@ -343,18 +343,14 @@ local function VUHDO_customizeHotIcons(aButton, aHotName, aRest, aTimes, anIcon,
 
 	if (tIsChargeShown) then
 		tChargeTexture:SetTexture(VUHDO_CHARGE_TEXTURES[aTimes]);
-		if (tHotColor["R"]) then
-			tChargeTexture:SetVertexColor(tHotColor["R"], tHotColor["G"], tHotColor["B"], tHotColor["O"]);
-		end
+		tChargeTexture:SetVertexColor(tHotColor["R"], tHotColor["G"], tHotColor["B"], tHotColor["O"]);
 		tChargeTexture:Show();
 	elseif (aShieldCharges > 0) then
 		if (sIsHotShowIcon) then
 			tHotColor = tHotCfg;
 		end
 		tChargeTexture:SetTexture(VUHDO_SHIELD_TEXTURES[aShieldCharges]);
-		if (tHotColor["R"]) then
-			tChargeTexture:SetVertexColor(tHotColor["R"] + 0.15, tHotColor["G"] + 0.15, tHotColor["B"] + 0.15, tHotColor["O"]);
-		end
+		tChargeTexture:SetVertexColor(tHotColor["R"] + 0.15, tHotColor["G"] + 0.15, tHotColor["B"] + 0.15, tHotColor["O"]);
 		tChargeTexture:Show();
 	else
 		tChargeTexture:Hide();

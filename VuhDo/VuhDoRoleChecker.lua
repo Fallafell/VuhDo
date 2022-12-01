@@ -1,12 +1,15 @@
-VUHDO_MANUAL_ROLES = {};
-local VUHDO_FIX_ROLES = {};
-local VUHDO_INSPECTED_ROLES = {};
-local VUHDO_DF_TOOL_ROLES = {};
+
+VUHDO_MANUAL_ROLES = { };
+local VUHDO_FIX_ROLES = { };
+local VUHDO_INSPECTED_ROLES = { };
+local VUHDO_DF_TOOL_ROLES = { };
 local VUHDO_INSPECT_TIMEOUT = 5;
 
 local tPoints1, tPoints2, tPoints3, tRank;
 VUHDO_NEXT_INSPECT_UNIT = nil;
 VUHDO_NEXT_INSPECT_TIME_OUT = nil;
+
+
 
 --------------------------------------------------------------
 local twipe = table.wipe;
@@ -28,24 +31,26 @@ local pairs = pairs;
 local VUHDO_MANUAL_ROLES;
 local VUHDO_RAID_NAMES;
 local VUHDO_RAID;
--- local sIsRolesConfigured;
+local sIsRolesConfigured;
 
 function VUHDO_roleCheckerInitBurst()
 	VUHDO_MANUAL_ROLES = VUHDO_GLOBAL["VUHDO_MANUAL_ROLES"];
 	VUHDO_RAID_NAMES = VUHDO_GLOBAL["VUHDO_RAID_NAMES"];
 	VUHDO_RAID = VUHDO_GLOBAL["VUHDO_RAID"];
-	--[[	sIsRolesConfigured =
+	sIsRolesConfigured =
 		VUHDO_isModelConfigured(VUHDO_ID_MELEE_TANK)
 		or VUHDO_isModelConfigured(VUHDO_ID_MELEE_DAMAGE)
 		or VUHDO_isModelConfigured(VUHDO_ID_RANGED_DAMAGE)
 		or VUHDO_isModelConfigured(VUHDO_ID_RANGED_HEAL)
 		or VUHDO_isModelConfigured(VUHDO_ID_MELEE)
 		or VUHDO_isModelConfigured(VUHDO_ID_RANGED)
-		or VUHDO_isAnyoneInterstedIn(VUHDO_UPDATE_ROLE); ]]
+		or VUHDO_isAnyoneInterstedIn(VUHDO_UPDATE_ROLE);
 
-	VUHDO_isUnitInModel = VUHDO_GLOBAL["VUHDO_isUnitInModel"];
+		VUHDO_isUnitInModel = VUHDO_GLOBAL["VUHDO_isUnitInModel"];
 end
 --------------------------------------------------------------
+
+
 
 -- Reset if spec changed or slash command
 function VUHDO_resetTalentScan(aUnit)
@@ -65,6 +70,8 @@ function VUHDO_resetTalentScan(aUnit)
 	end
 end
 
+
+
 --
 local tName;
 function VUHDO_trimInspected()
@@ -76,6 +83,8 @@ function VUHDO_trimInspected()
 	end
 end
 
+
+
 -- If timeout after talent tree server request
 function VUHDO_setRoleUndefined(aUnit)
 	local tInfo = VUHDO_RAID[aUnit];
@@ -83,6 +92,8 @@ function VUHDO_setRoleUndefined(aUnit)
 		VUHDO_INSPECTED_ROLES[tInfo["name"]] = nil;
 	end
 end
+
+
 
 --
 local tInfo;
@@ -96,29 +107,31 @@ local function VUHDO_shouldBeInspected(aUnit)
 	if (tInfo["isPet"] or not tInfo["connected"]) then
 		return false;
 	end
-	-- Determined by role or can't tell by talent trees (dk)?
+  -- Determined by role or can't tell by talent trees (dk)?
 	tClass = tInfo["classId"];
 	if (21 == tClass -- VUHDO_ID_ROGUES
-	or 22 == tClass -- VUHDO_ID_HUNTERS
-	or 24 == tClass -- VUHDO_ID_MAGES
-	or 25 == tClass -- VUHDO_ID_WARLOCKS
-	or 29 == tClass) then -- VUHDO_ID_DEATH_KNIGHT
+		or 22 == tClass -- VUHDO_ID_HUNTERS
+		or 24 == tClass -- VUHDO_ID_MAGES
+		or 25 == tClass -- VUHDO_ID_WARLOCKS
+		or 29 == tClass) then -- VUHDO_ID_DEATH_KNIGHT
 		return false;
 	end
-	-- Already inspected or manually overridden?
-	-- or assigned tank or heal via dungeon finder? (in case of DPS inspect anyway)
+  -- Already inspected or manually overridden?
+  -- or assigned tank or heal via dungeon finder? (in case of DPS inspect anyway)
 	tName = tInfo["name"];
-	if (VUHDO_INSPECTED_ROLES[tName] ~= nil or VUHDO_MANUAL_ROLES[tName] ~= nil or VUHDO_DF_TOOL_ROLES[tName] == 60 or
-		VUHDO_DF_TOOL_ROLES[tName] == 63) then -- VUHDO_ID_MELEE_TANK -- VUHDO_ID_RANGED_HEAL
+	if (VUHDO_INSPECTED_ROLES[tName] ~= nil or VUHDO_MANUAL_ROLES[tName] ~= nil
+		or VUHDO_DF_TOOL_ROLES[tName] == 60 or VUHDO_DF_TOOL_ROLES[tName] == 63) then -- VUHDO_ID_MELEE_TANK -- VUHDO_ID_RANGED_HEAL
 		return false;
 	end
-	-- Too far away?
+  -- Too far away?
 	if (not CheckInteractDistance(aUnit, 1)) then
 		return false;
 	end
 
 	return true;
 end
+
+
 
 --
 local tUnit;
@@ -137,6 +150,8 @@ function VUHDO_tryInspectNext()
 		end
 	end
 end
+
+
 
 --
 local tIcon1, tIcon2, tIcon3;
@@ -163,7 +178,8 @@ function VUHDO_inspectLockRole()
 
 	if (VUHDO_ID_PRIESTS == tClassId) then
 		-- 1 = Disc, 2 = Holy, 3 = Shadow
-		if (tPoints1 > tPoints3 or tPoints2 > tPoints3) then
+		if (tPoints1 > tPoints3
+		or tPoints2 > tPoints3)	 then
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 63; -- VUHDO_ID_RANGED_HEAL
 		else
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 62; -- VUHDO_ID_RANGED_DAMAGE
@@ -171,7 +187,8 @@ function VUHDO_inspectLockRole()
 
 	elseif (VUHDO_ID_WARRIORS == tClassId) then
 		-- 1 = Waffen, 2 = Furor, 3 = Schutz
-		if (tPoints1 > tPoints3 or tPoints2 > tPoints3) then
+		if (tPoints1 > tPoints3
+		or tPoints2 > tPoints3)	 then
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 61; -- VUHDO_ID_MELEE_DAMAGE
 		else
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 60; -- VUHDO_ID_MELEE_TANK
@@ -181,10 +198,10 @@ function VUHDO_inspectLockRole()
 		-- 1 = Gleichgewicht, 2 = Wilder Kampf, 3 = Wiederherstellung
 		if (tPoints1 > tPoints2 and tPoints1 > tPoints3) then
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 62; -- VUHDO_ID_RANGED_DAMAGE
-		elseif (tPoints3 > tPoints2) then
+		elseif(tPoints3 > tPoints2) then
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 63; -- VUHDO_ID_RANGED_HEAL
 		else
-			-- "Natï¿½rliche Reaktion" geskillt => Wahrsch. Tank?
+			-- "Natürliche Reaktion" geskillt => Wahrsch. Tank?
 			_, _, _, _, tRank, _, _, _ = GetTalentInfo(2, 16, tIsInspect, false, tActiveTree);
 			if (tRank > 0) then
 				VUHDO_INSPECTED_ROLES[tInfo.name] = 60; -- VUHDO_ID_MELEE_TANK
@@ -204,7 +221,7 @@ function VUHDO_inspectLockRole()
 		end
 
 	elseif (VUHDO_ID_SHAMANS == tClassId) then
-		-- 1 = Elementar, 2 = Verstï¿½rker, 3 = Wiederherstellung
+	  -- 1 = Elementar, 2 = Verstärker, 3 = Wiederherstellung
 		if (tPoints1 > tPoints2 and tPoints1 > tPoints3) then
 			VUHDO_INSPECTED_ROLES[tInfo["name"]] = 62; -- VUHDO_ID_RANGED_DAMAGE
 		elseif (tPoints2 > tPoints3) then
@@ -216,31 +233,35 @@ function VUHDO_inspectLockRole()
 
 	ClearInspectPlayer();
 	VUHDO_NEXT_INSPECT_UNIT = nil;
-	--	if (sIsRolesConfigured) then
-	VUHDO_normalRaidReload();
-	--[[	else
+	if (sIsRolesConfigured) then
+		VUHDO_normalRaidReload();
+	else
 		VUHDO_refreshRaidMembers();
-	end]]
+	end
 end
+
+
 
 --
 local tIsTank, tIsHeal, tIsDps;
 local function VUHDO_determineDfToolRole(anInfo)
-	tIsTank, tIsHeal, tIsDps = UnitGroupRolesAssigned(anInfo["unit"]);
+  tIsTank, tIsHeal, tIsDps = UnitGroupRolesAssigned(anInfo["unit"]);
 
-	if (tIsTank) then
-		VUHDO_DF_TOOL_ROLES[anInfo["name"]] = 60; -- VUHDO_ID_MELEE_TANK
-		return 60; -- VUHDO_ID_MELEE_TANK
-	elseif (tIsHeal) then
-		VUHDO_DF_TOOL_ROLES[anInfo["name"]] = 63; -- VUHDO_ID_RANGED_HEAL
-		return 63; -- VUHDO_ID_RANGED_HEAL
-	elseif (tIsDps) then
-		VUHDO_DF_TOOL_ROLES[anInfo["name"]] = 61; -- VUHDO_ID_MELEE_DAMAGE
-		-- Do return "nil", cause we don't know if melee or ranged dps, mark as indicator
-	end
+  if (tIsTank) then
+  	VUHDO_DF_TOOL_ROLES[anInfo["name"]] = 60; -- VUHDO_ID_MELEE_TANK
+  	return 60; -- VUHDO_ID_MELEE_TANK
+  elseif (tIsHeal) then
+  	VUHDO_DF_TOOL_ROLES[anInfo["name"]] = 63; -- VUHDO_ID_RANGED_HEAL
+  	return 63; -- VUHDO_ID_RANGED_HEAL
+  elseif (tIsDps) then
+  	VUHDO_DF_TOOL_ROLES[anInfo["name"]] = 61; -- VUHDO_ID_MELEE_DAMAGE
+  	-- Do return "nil", cause we don't know if melee or ranged dps, mark as indicator
+  end
 
-	return nil;
+  return nil;
 end
+
+
 
 --
 local tName;
@@ -260,7 +281,7 @@ function VUHDO_determineRole(aUnit)
 
 	tClassId = tInfo["classId"];
 
-	-- Role determined by non-hybrid class?
+  -- Role determined by non-hybrid class?
 	if (21 == tClassId) then -- VUHDO_ID_ROGUES
 		return 61; -- VUHDO_ID_MELEE_DAMAGE
 	elseif (22 == tClassId) then -- VUHDO_ID_HUNTERS
@@ -278,14 +299,14 @@ function VUHDO_determineRole(aUnit)
 		return tFixRole;
 	end
 	-- Assigned for MT?
-	if (VUHDO_isUnitInModel(aUnit, 41)) then -- VUHDO_ID_MAINTANKS
+ 	if (VUHDO_isUnitInModel(aUnit, 41)) then -- VUHDO_ID_MAINTANKS
 		return 60; -- VUHDO_ID_MELEE_TANK
-	end
+ 	end
 	-- Talent tree inspected?
 	if (VUHDO_INSPECTED_ROLES[tName] ~= nil) then
 		return VUHDO_INSPECTED_ROLES[tName];
 	end
-	-- Estimated role fixed?
+  -- Estimated role fixed?
 	if (VUHDO_FIX_ROLES[tName] ~= nil) then
 		return VUHDO_FIX_ROLES[tName];
 	end

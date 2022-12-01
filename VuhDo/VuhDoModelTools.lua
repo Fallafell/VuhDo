@@ -7,6 +7,8 @@ local twipe = table.wipe;
 local ceil = ceil;
 local pairs = pairs;
 
+
+
 --
 local tModelArray;
 local tKeyArray;
@@ -31,6 +33,8 @@ function VUHDO_clearUndefinedModelEntries()
 
 end
 
+
+
 --
 local tCnt;
 function VUHDO_initPanelModels()
@@ -40,6 +44,8 @@ function VUHDO_initPanelModels()
 		VUHDO_PANEL_MODELS[tCnt] = VUHDO_PANEL_SETUP[tCnt]["MODEL"]["groups"];
 	end
 end
+
+
 
 --
 local tIsShowModel;
@@ -59,12 +65,13 @@ function VUHDO_initDynamicPanelModels()
 
 	for tPanelNum, tModelArray in pairs(VUHDO_PANEL_MODELS) do
 		tIsOmitEmpty = VUHDO_PANEL_SETUP[tPanelNum]["SCALING"]["ommitEmptyWhenStructured"];
-		VUHDO_PANEL_DYN_MODELS[tPanelNum] = {};
+		VUHDO_PANEL_DYN_MODELS[tPanelNum] = { };
 		tMaxRows = VUHDO_PANEL_SETUP[tPanelNum]["SCALING"]["maxRowsWhenLoose"];
 
 		for tModelIdx, tModelId in pairs(tModelArray) do
 			tNumModels = #VUHDO_getGroupMembers(tModelId);
-			if ((not tIsOmitEmpty) or tNumModels > 0) then
+			if ((not tIsOmitEmpty)
+				or tNumModels > 0) then
 
 				tRepeatModels = ceil(tNumModels / tMaxRows);
 				if (tRepeatModels == 0) then
@@ -76,6 +83,6 @@ function VUHDO_initDynamicPanelModels()
 				end
 			end
 		end
-
+		
 	end
 end

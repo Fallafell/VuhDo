@@ -1,4 +1,7 @@
-VuhDoHealComms = {};
+
+
+VuhDoHealComms = { };
+
 
 -- BURST CACHE ---------------------------------------------------
 local floor = floor;
@@ -25,22 +28,27 @@ function VUHDO_healCommAdapterInitBurst()
 	sIsBombed = VUHDO_CONFIG["SHOW_INC_BOMBED"];
 	sIsOthers = VUHDO_CONFIG["SHOW_INCOMING"];
 	sIsOwn = VUHDO_CONFIG["SHOW_OWN_INCOMING"];
-	sCastedSecs = VUHDO_CONFIG["INC_CASTED_SECS"]
-	sChannelledSecs = VUHDO_CONFIG["INC_CHANNELLED_SECS"];
-	sHotsSecs = VUHDO_CONFIG["INC_HOTS_SECS"]
-	sBombedSecs = VUHDO_CONFIG["INC_BOMBED_SECS"]
+  sCastedSecs = VUHDO_CONFIG["INC_CASTED_SECS"]
+  sChannelledSecs = VUHDO_CONFIG["INC_CHANNELLED_SECS"];
+  sHotsSecs = VUHDO_CONFIG["INC_HOTS_SECS"]
+  sBombedSecs = VUHDO_CONFIG["INC_BOMBED_SECS"]
 end
+
 
 ----------------------------------------------------
 
-local VUHDO_INC_HEAL = {};
-local VUHDO_INC_END = {};
+
+local VUHDO_INC_HEAL = { };
+local VUHDO_INC_END = { };
+
 
 --
 local tInfo;
 function VUHDO_getIncHealOnUnit(aName)
 	return VUHDO_INC_HEAL[aName] or 0;
 end
+
+
 
 --
 local function VUHDO_setIncHeal(aTargetName, anAmount, anEndTime)
@@ -50,6 +58,8 @@ local function VUHDO_setIncHeal(aTargetName, anAmount, anEndTime)
 	end
 	VUHDO_updateHealthBarsFor(VUHDO_RAID_NAMES[aTargetName], 9); -- VUHDO_UPDATE_INC
 end
+
+
 
 --
 local tName, tTime, tNow;
@@ -63,6 +73,8 @@ function VUHDO_clearObsoleteInc()
 		end
 	end
 end
+
+
 
 local sHealComm = LibStub("LibHealComm-4.0");
 local VUHDO_DIRECT_HEALS = sHealComm.DIRECT_HEALS;
@@ -82,8 +94,9 @@ function VuhDoHealComms:HealComm_HealStarted(_, aCasterGUID, _, aHealType, anEnd
 	tCasterName = VUHDO_RAID_GUID_NAMES[aCasterGUID];
 	tNow = GetTime();
 
-	if (tCasterName ~= nil and (sIsOthers and VUHDO_PLAYER_NAME ~= tCasterName) or
-		(sIsOwn and VUHDO_PLAYER_NAME == tCasterName)) then
+	if (tCasterName ~= nil and
+				(sIsOthers and VUHDO_PLAYER_NAME ~= tCasterName)
+		 or (sIsOwn and VUHDO_PLAYER_NAME == tCasterName)) then
 
 		tArgNum = select("#", ...);
 
@@ -115,6 +128,8 @@ function VuhDoHealComms:HealComm_HealStarted(_, aCasterGUID, _, aHealType, anEnd
 		end
 	end
 end
+
+
 
 --
 function VuhDoHealComms:HealComm_HealStopped(_, aCasterGUID, _, aHealType, anIsInterrupted, ...)

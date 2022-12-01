@@ -1,5 +1,7 @@
 local VUHDO_IS_ON_READY_CHECK = false;
 
+
+
 --
 local function VUHDO_placeReadyIcon(aButton)
 	local tUnit = VUHDO_resolveButtonUnit(aButton);
@@ -19,6 +21,8 @@ local function VUHDO_placeReadyIcon(aButton)
 	end
 end
 
+
+
 --
 local function VUHDO_placeAllReadyIcons()
 	local tPanelNum;
@@ -32,11 +36,13 @@ local function VUHDO_placeAllReadyIcons()
 			if (tButton:GetAttribute("unit") ~= nil) then
 				VUHDO_placeReadyIcon(tButton);
 			else
-				break
+				break;
 			end
 		end
 	end
 end
+
+
 
 --
 local function VUHDO_hideAllReadyIcons()
@@ -52,11 +58,13 @@ local function VUHDO_hideAllReadyIcons()
 			if (tButton:GetAttribute("unit") ~= nil) then
 				UIFrameFlash(VUHDO_getBarRoleIcon(tButton, 20), 0, 2, 10, false, 0, 8);
 			else
-				break
+				break;
 			end
 		end
 	end
 end
+
+
 
 --
 function VUHDO_readyCheckStarted()
@@ -64,6 +72,8 @@ function VUHDO_readyCheckStarted()
 	VUHDO_hideAllPlayerIcons();
 	VUHDO_placeAllReadyIcons();
 end
+
+
 
 -- Status true = ready, nil = not ready
 local function VUHDO_updateReadyIcon(aUnit, anIsReady)
@@ -85,6 +95,8 @@ local function VUHDO_updateReadyIcon(aUnit, anIsReady)
 	end
 end
 
+
+
 --
 function VUHDO_readyCheckConfirm(aUnit, anIsReady)
 	if (VUHDO_RAID[aUnit] == nil) then
@@ -98,12 +110,16 @@ function VUHDO_readyCheckConfirm(aUnit, anIsReady)
 	VUHDO_updateReadyIcon(aUnit, anIsReady);
 end
 
+
+
 --
 function VUHDO_readyStartCheck(aName, aDuration)
 	if (VUHDO_RAID_NAMES[aName] ~= nil) then
 		VUHDO_readyCheckConfirm(VUHDO_RAID_NAMES[aName], true); -- Originator is always ready
 	end
 end
+
+
 
 --
 function VUHDO_readyCheckEnds()

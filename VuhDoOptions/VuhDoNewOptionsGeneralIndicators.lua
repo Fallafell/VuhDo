@@ -201,7 +201,7 @@ function VUHDO_initBouquetSlotsComboModel()
 		end
 	);
 
-	tinsert(VUHDO_BOUQUET_SLOTS_COMBO_MODEL, 1, {"", "Пусто" });
+	tinsert(VUHDO_BOUQUET_SLOTS_COMBO_MODEL, 1, {"", " -- off / empty --" });
 end
 
 

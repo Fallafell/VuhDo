@@ -3,22 +3,22 @@
 end
 -- Class Names
 -- @EXACT = false
-VUHDO_I18N_WARRIORS="Воин"
-VUHDO_I18N_ROGUES = "Разбойник";
-VUHDO_I18N_HUNTERS = "Охотник";
-VUHDO_I18N_PALADINS = "Паладин";
-VUHDO_I18N_MAGES = "Маг";
-VUHDO_I18N_WARLOCKS = "Чернокнижник";
-VUHDO_I18N_SHAMANS = "Шаман";
-VUHDO_I18N_DRUIDS = "Друид";
-VUHDO_I18N_PRIESTS = "Жрец";
-VUHDO_I18N_DEATH_KNIGHT = "Рыцарь Смерти";
+VUHDO_I18N_WARRIORS="Войны"
+VUHDO_I18N_ROGUES = "Разбойники";
+VUHDO_I18N_HUNTERS = "Охотники";
+VUHDO_I18N_PALADINS = "Паладины";
+VUHDO_I18N_MAGES = "Маги";
+VUHDO_I18N_WARLOCKS = "Чернокнижники";
+VUHDO_I18N_SHAMANS = "Шаманы";
+VUHDO_I18N_DRUIDS = "Друиды";
+VUHDO_I18N_PRIESTS = "Жреци";
+VUHDO_I18N_DEATH_KNIGHT = "Рыцари Смерти";
 
 
 -- Group Model Names
 -- @EXACT = false
 VUHDO_I18N_GROUP = "Группа";
-VUHDO_I18N_OWN_GROUP = "Ваша\nгруппа";
+VUHDO_I18N_OWN_GROUP = "Ваша группа";
 
 
 -- Special Model Names
@@ -40,10 +40,10 @@ VUHDO_I18N_PLAYER = "Игрок";
 -- VuhDoTooltip.lua
 -- @EXACT = false
 VUHDO_I18N_TT_POSITION = "|cffffb233Позиция:|r";
-VUHDO_I18N_TT_GHOST = "|cffff0000Дух|r-";
-VUHDO_I18N_TT_DEAD = "|cffff0000Труп|r-";
-VUHDO_I18N_TT_AFK = "Афк-";
-VUHDO_I18N_TT_DND = "d/s";
+VUHDO_I18N_TT_GHOST = "<ПРИЗРАК>";
+VUHDO_I18N_TT_DEAD = "<МЁРТВ>";
+VUHDO_I18N_TT_AFK = "<AFK>";
+VUHDO_I18N_TT_DND = "<DND>";
 VUHDO_I18N_TT_LIFE = "|cffffb233Здоровье:|r ";
 VUHDO_I18N_TT_MANA = "|cffffb233Мана:|r ";
 VUHDO_I18N_TT_LEVEL = "Уровень ";
@@ -54,12 +54,12 @@ VUHDO_I18N_TT_LEVEL = "Уровень ";
 VUHDO_I18N_CHOOSE = "Выбрать";
 VUHDO_I18N_DRAG = "Тащить";
 VUHDO_I18N_REMOVE = "Удалить";
-VUHDO_I18N_ME = "Я";
+VUHDO_I18N_ME = "me!";
 VUHDO_I18N_TYPE = "Тип";
 VUHDO_I18N_VALUE = "Значение";
 VUHDO_I18N_SPECIAL = "Особый";
-VUHDO_I18N_BUFF_ALL = "Все";
-VUHDO_I18N_SHOW_BUFF_WATCH = "Панель баффов";
+VUHDO_I18N_BUFF_ALL = "все";
+VUHDO_I18N_SHOW_BUFF_WATCH = "Наблюдение баффов";
 
 -- @EXACT = true
 --
@@ -68,28 +68,28 @@ VUHDO_I18N_RANK = "Уровень";
 
 -- Chat messages
 -- @EXACT = false
-VUHDO_I18N_COMMAND_LIST = "\n|cffffe566 - [ Команды VuhDo ] -|r\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566opt|r[ions] - настройки VuhDo\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566res|r[et] - сбросить позицию панелей\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566lock|r - вкл/выкл закрепление панелей\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566mm, map, minimap|r - вкл/выкл иконку у миникарты\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566show, hide, toggle|r - включить/выключить панели\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566load|r - [Skin],[Arrangement],[Key Layout]\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§[broad]|cffffe566cast, mt|r[s] - передать список основных танков\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566role|r - сбросить роли игроков\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566aegis x|r - Установить чувствительность обнаружения\n";
-VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566help,?|r - список данных команд";
+VUHDO_I18N_COMMAND_LIST = "\n|cffffe566 - [ Команды VuhDo ] -|r";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566opt|r[ions] - настройки VuhDo";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566res|r[et] - сбросить позицию панелей";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566lock|r - вкл/выкл закрепление панелей";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566mm, map, minimap|r - вкл/выкл иконку у миникарты";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566show, hide, toggle|r - включить/выключить панели";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566load|r - [Skin],[Arrangement],[Key Layout]";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§[broad]|cffffe566cast, mt|r[s] - передать список основных танков рейду";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566role|r - сбросить роли игроков";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566aegis x|r - Set Divine Aegis detection sensivity";
+VUHDO_I18N_COMMAND_LIST = VUHDO_I18N_COMMAND_LIST .. "§|cffffe566help,?|r - список данных команд\n";
 
-VUHDO_I18N_BAD_COMMAND = "Неверно! Введите '/vuhdo help' или '/vd ?' для получения списка команд.";
-VUHDO_I18N_CHAT_SHOWN = "|cffffe566показать|r.";
-VUHDO_I18N_CHAT_HIDDEN = "|cffffe566скрыть|r.";
+VUHDO_I18N_BAD_COMMAND = "Плохой аргумент! Введите '/vuhdo help' или '/vd ?' для получения списка команд.";
+VUHDO_I18N_CHAT_SHOWN = "|cffffe566shown|r.";
+VUHDO_I18N_CHAT_HIDDEN = "|cffffe566hidden|r.";
 VUHDO_I18N_MM_ICON = "Иконка у миникарты: ";
 VUHDO_I18N_MTS_BROADCASTED = "Основные танки переданы в рейд";
-VUHDO_I18N_PANELS_SHOWN = "Панель исцеления: |cffffe566показать|r.";
-VUHDO_I18N_PANELS_HIDDEN = "Панель исцеления: |cffffe566скрыть|r.";
+VUHDO_I18N_PANELS_SHOWN = "Панель исцеления: |cffffe566shown|r.";
+VUHDO_I18N_PANELS_HIDDEN = "Панель исцеления: |cffffe566hidden|r.";
 VUHDO_I18N_LOCK_PANELS_PRE = "Позиция панели: ";
-VUHDO_I18N_LOCK_PANELS_LOCKED = "|cffffe566заблокировать|r.";
-VUHDO_I18N_LOCK_PANELS_UNLOCKED = "|cffffe566разблокировать|r.";
+VUHDO_I18N_LOCK_PANELS_LOCKED = "|cffffe566locked|r.";
+VUHDO_I18N_LOCK_PANELS_UNLOCKED = "|cffffe566unlocked|r.";
 VUHDO_I18N_PANELS_RESET = "Позиция панели сброшена.";
 
 
@@ -97,7 +97,7 @@ VUHDO_I18N_PANELS_RESET = "Позиция панели сброшена.";
 -- @EXACT = false
 VUHDO_I18N_ROLE = "Роль";
 VUHDO_I18N_PRIVATE_TANK = "Личный танк";
-VUHDO_I18N_SET_BUFF = "Назначьте баф";
+VUHDO_I18N_SET_BUFF = "Назначте баф";
 
 
 -- Minimap
@@ -105,12 +105,12 @@ VUHDO_I18N_SET_BUFF = "Назначьте баф";
 VUHDO_I18N_VUHDO_OPTIONS = "Настройки VuhDo";
 VUHDO_I18N_PANEL_SETUP = "Настройки";
 VUHDO_I18N_MM_TOOLTIP = "ЛКМ: Настройки панели\nПКМ: Меню";
-VUHDO_I18N_TOGGLES = "Переключатели";
-VUHDO_I18N_LOCK_PANELS = "Зафиксировать";
+VUHDO_I18N_TOGGLES = "Toggles";
+VUHDO_I18N_LOCK_PANELS = "Закрепить панель";
 VUHDO_I18N_SHOW_PANELS = "Показать панели";
 VUHDO_I18N_MM_BUTTON = "Кнопка у мини-карты";
 VUHDO_I18N_CLOSE = "Закрыть";
-VUHDO_I18N_BROADCAST_MTS = "Объявить танков";
+VUHDO_I18N_BROADCAST_MTS = "Передать ГТ";
 
 
 -- Buff categories
@@ -155,42 +155,42 @@ VUHDO_I18N_BUFFC_ASPECT = "02Дух";
 -- Key Binding Headers/Names
 -- @EXACT = false
 BINDING_HEADER_VUHDO_TITLE = "VuhDo - рамки рейда";
-BINDING_NAME_VUHDO_KEY_ASSIGN_1 = "Мышь 1";
-BINDING_NAME_VUHDO_KEY_ASSIGN_2 = "Мышь 2";
-BINDING_NAME_VUHDO_KEY_ASSIGN_3 = "Мышь 3";
-BINDING_NAME_VUHDO_KEY_ASSIGN_4 = "Мышь 4";
-BINDING_NAME_VUHDO_KEY_ASSIGN_5 = "Мышь 5";
-BINDING_NAME_VUHDO_KEY_ASSIGN_6 = "Мышь 6";
-BINDING_NAME_VUHDO_KEY_ASSIGN_7 = "Мышь 7";
-BINDING_NAME_VUHDO_KEY_ASSIGN_8 = "Мышь 8";
-BINDING_NAME_VUHDO_KEY_ASSIGN_9 = "Мышь 9";
-BINDING_NAME_VUHDO_KEY_ASSIGN_10 = "Мышь 10";
-BINDING_NAME_VUHDO_KEY_ASSIGN_11 = "Мышь 11";
-BINDING_NAME_VUHDO_KEY_ASSIGN_12 = "Мышь 12";
-BINDING_NAME_VUHDO_KEY_ASSIGN_13 = "Мышь 13";
-BINDING_NAME_VUHDO_KEY_ASSIGN_14 = "Мышь 14";
-BINDING_NAME_VUHDO_KEY_ASSIGN_15 = "Мышь 15";
-BINDING_NAME_VUHDO_KEY_ASSIGN_16 = "Мышь 16";
+BINDING_NAME_VUHDO_KEY_ASSIGN_1 = "Mouse over Spell 1";
+BINDING_NAME_VUHDO_KEY_ASSIGN_2 = "Mouse over Spell 2";
+BINDING_NAME_VUHDO_KEY_ASSIGN_3 = "Mouse over Spell 3";
+BINDING_NAME_VUHDO_KEY_ASSIGN_4 = "Mouse over Spell 4";
+BINDING_NAME_VUHDO_KEY_ASSIGN_5 = "Mouse over Spell 5";
+BINDING_NAME_VUHDO_KEY_ASSIGN_6 = "Mouse over Spell 6";
+BINDING_NAME_VUHDO_KEY_ASSIGN_7 = "Mouse over Spell 7";
+BINDING_NAME_VUHDO_KEY_ASSIGN_8 = "Mouse over Spell 8";
+BINDING_NAME_VUHDO_KEY_ASSIGN_9 = "Mouse over Spell 9";
+BINDING_NAME_VUHDO_KEY_ASSIGN_10 = "Mouse over Spell 10";
+BINDING_NAME_VUHDO_KEY_ASSIGN_11 = "Mouse over Spell 11";
+BINDING_NAME_VUHDO_KEY_ASSIGN_12 = "Mouse over Spell 12";
+BINDING_NAME_VUHDO_KEY_ASSIGN_13 = "Mouse over Spell 13";
+BINDING_NAME_VUHDO_KEY_ASSIGN_14 = "Mouse over Spell 14";
+BINDING_NAME_VUHDO_KEY_ASSIGN_15 = "Mouse over Spell 15";
+BINDING_NAME_VUHDO_KEY_ASSIGN_16 = "Mouse over Spell 16";
 
 BINDING_NAME_VUHDO_KEY_ASSIGN_SMART_BUFF = "Быстрый Бафф";
 
-VUHDO_I18N_MOUSE_OVER_BINDING = "Клавиши";
-VUHDO_I18N_UNASSIGNED = "(неназначенно)";
+VUHDO_I18N_MOUSE_OVER_BINDING = "Keyboard spell";
+VUHDO_I18N_UNASSIGNED = "(unassigned)";
 
 
 -- #+V1.89
 VUHDO_I18N_YES = "Да";
 VUHDO_I18N_NO = "Нет";
-VUHDO_I18N_UP = "Вверх";
-VUHDO_I18N_DOWN = "Вниз";
+VUHDO_I18N_UP = "вверх";
+VUHDO_I18N_DOWN = "вниз";
 VUHDO_I18N_VEHICLES = "Транспорт";
 
 
 -- #+v1.94
-VUHDO_I18N_DEFAULT_RES_ANNOUNCE = "Вернись к жизни!";
+VUHDO_I18N_DEFAULT_RES_ANNOUNCE = "Вернись к жизни, прошу тебя!";
 
 -- #v+1.151
-VUHDO_I18N_MAIN_ASSISTS = "Помощник";
+VUHDO_I18N_MAIN_ASSISTS = "Наводчик";
 
 -- #v+1.169
 VUHDO_I18N_O_REALLY = "Точно?";
@@ -210,7 +210,7 @@ VUHDO_I18N_PROMOTE_ASSISTANT = "Назначить помощником";
 VUHDO_I18N_DEMOTE_ASSISTANT = "Разжаловать из помощников";
 VUHDO_I18N_PROMOTE_MASTER_LOOTER = "Назначить ответственным за добычу";
 VUHDO_I18N_MT_NUMBER = "ГТ #";
-VUHDO_I18N_ROLE_OVERRIDE = "Роль переопределения";
+VUHDO_I18N_ROLE_OVERRIDE = "Role override";
 VUHDO_I18N_MELEE_TANK = "Ближний бой - Танк";
 VUHDO_I18N_MELEE_DPS = "Ближний бой - DPS";
 VUHDO_I18N_RANGED_DPS = "Дальний бой - DPS";
@@ -221,28 +221,28 @@ VUHDO_I18N_PROMOTE_ASSIST_MSG_2 = "|r в помощники.";
 VUHDO_I18N_DEMOTE_ASSIST_MSG_1 = "Разжалует |cffffe566";
 VUHDO_I18N_DEMOTE_ASSIST_MSG_2 = "|r из помощников.";
 VUHDO_I18N_RESET_ROLES = "Сбросить роли";
-VUHDO_I18N_LOAD_KEY_SETUP = "Набор клавиш";
+VUHDO_I18N_LOAD_KEY_SETUP = "Загр.набор клавиш";
 VUHDO_I18N_BUFF_ASSIGN_1 = "Бафф |cffffe566";
 VUHDO_I18N_BUFF_ASSIGN_2 = "|r был назначен на |cffffe566";
 VUHDO_I18N_BUFF_ASSIGN_3 = "|r";
 VUHDO_I18N_RESS_ERR_1 = "Не может воскресить, ";
 VUHDO_I18N_RESS_ERR_2 = " встал призраком.";
-VUHDO_I18N_MACRO_KEY_ERR_1 = "Ошибка: Keyboard mouse-over macro size exceeds limit for spell: ";
-VUHDO_I18N_MACRO_KEY_ERR_2 = "/256 Персонажи). Попробуйте уменьшить варианты автоматического пожара!!!";
-VUHDO_I18N_MACRO_NUM_ERR = "Максимальное количество макросов на персонаже! Не могу создать макрос для: ";
-VUHDO_I18N_SMARTBUFF_ERR_1 = "VuhDo: Невозможно использовать автобафф в бою!";
-VUHDO_I18N_SMARTBUFF_ERR_2 = "VuhDo: Цель недоступна для баффа ";
-VUHDO_I18N_SMARTBUFF_ERR_3 = " Игроки вне зоны для ";
-VUHDO_I18N_SMARTBUFF_ERR_4 = "VuhDo: Нет баффа.";
-VUHDO_I18N_SMARTBUFF_OKAY_1 = "VuhDo: Бафф есть |cffffffff";
+VUHDO_I18N_MACRO_KEY_ERR_1 = "ERROR: Keyboard mouse-over macro size exceeds limit for spell: ";
+VUHDO_I18N_MACRO_KEY_ERR_2 = "/256 Characters). Try reducing auto fire options!!!";
+VUHDO_I18N_MACRO_NUM_ERR = "Maximum number of macros per character exceeded! Can't create mouse over macro for: ";
+VUHDO_I18N_SMARTBUFF_ERR_1 = "VuhDo: Unable to smart buff in combat!";
+VUHDO_I18N_SMARTBUFF_ERR_2 = "VuhDo: No buff target available for ";
+VUHDO_I18N_SMARTBUFF_ERR_3 = " players out of range for ";
+VUHDO_I18N_SMARTBUFF_ERR_4 = "VuhDo: No buff to cast.";
+VUHDO_I18N_SMARTBUFF_OKAY_1 = "VuhDo: Buffing |cffffffff";
 VUHDO_I18N_SMARTBUFF_OKAY_2 = "|r on ";
-VUHDO_I18N_SET_BUFF_TARGET_1 = "Настройка бафа цели для ";
+VUHDO_I18N_SET_BUFF_TARGET_1 = "Setting buff target for ";
 VUHDO_I18N_SET_BUFF_TARGET_2 = " to ";
 
 
 -- #+v1.189
 VUHDO_I18N_UNKNOWN = "неизвестно";
-VUHDO_I18N_SELF = "Скрыть\nсебя";
+VUHDO_I18N_SELF = "Себя";
 VUHDO_I18N_MELEES = "Ближний бой";
 VUHDO_I18N_RANGED = "Дальний бой";
 
@@ -251,7 +251,7 @@ VUHDO_I18N_OPTIONS_NOT_LOADED = ">>> Модуль настроек VuhDo не з
 VUHDO_I18N_SPELL_LAYOUT_NOT_EXIST_1 = "Ошибка: Размещение заклинания \"";
 VUHDO_I18N_SPELL_LAYOUT_NOT_EXIST_2 = "\" не существует.";
 VUHDO_I18N_AUTO_ARRANG_1 = "Количество участников группы изменено на: ";
-VUHDO_I18N_AUTO_ARRANG_2 = ". Автокресловочное расположение: \"";
+VUHDO_I18N_AUTO_ARRANG_2 = ". Auto-engaging arrangement: \"";
 
 -- #+1.209
 VUHDO_I18N_OWN_GROUP_LONG = "Свою группу";
@@ -259,7 +259,7 @@ VUHDO_I18N_TRACK_BUFFS_FOR = "Слежение баффа для ...";
 
 VUHDO_I18N_NO_FOCUS = "[нет фокуса]";
 VUHDO_I18N_NOT_AVAILABLE = "[ N/A ]";
-VUHDO_I18N_SHIELD_ABSORPTION = "Статус\nщита";
+VUHDO_I18N_SHIELD_ABSORPTION = "Статус щита";
 
 
 -- #+1.237
@@ -271,61 +271,61 @@ VUHDO_I18N_YARDS = "метр(а/ов)";
 -- #+1.252
 VUHDO_I18N_PANEL = "Панель";
 
-VUHDO_I18N_BOUQUET_AGGRO = "Угроза";
-VUHDO_I18N_BOUQUET_OUT_OF_RANGE = "Дальность";
-VUHDO_I18N_BOUQUET_IN_RANGE = "Дальность, в";
-VUHDO_I18N_BOUQUET_IN_YARDS = "Расстояние < метров";
-VUHDO_I18N_BOUQUET_OTHER_HOTS = "ХоТы других игроков";
-VUHDO_I18N_BOUQUET_DEBUFF_DISPELLABLE = "Дебаф - рассеиваемый";
-VUHDO_I18N_BOUQUET_DEBUFF_MAGIC = "Дебаф - магия";
-VUHDO_I18N_BOUQUET_DEBUFF_DISEASE = "Дебаф - болезнь";
-VUHDO_I18N_BOUQUET_DEBUFF_POISON = "Дебаф - яд";
-VUHDO_I18N_BOUQUET_DEBUFF_CURSE = "Дебаф - проклятие";
-VUHDO_I18N_BOUQUET_CHARMED = "Контроль разума";
-VUHDO_I18N_BOUQUET_DEAD = "Труп";
-VUHDO_I18N_BOUQUET_DISCONNECTED = "Разъединён";
-VUHDO_I18N_BOUQUET_AFK = "AFK";
-VUHDO_I18N_BOUQUET_PLAYER_TARGET = "Цель игрока";
-VUHDO_I18N_BOUQUET_MOUSEOVER_TARGET = "Наведение мыши\nна 1 цель";
-VUHDO_I18N_BOUQUET_MOUSEOVER_GROUP = "Наведение мыши\nна группу";
-VUHDO_I18N_BOUQUET_HEALTH_BELOW = "Здоровье < %";
-VUHDO_I18N_BOUQUET_MANA_BELOW = "Мана < %";
-VUHDO_I18N_BOUQUET_THREAT_ABOVE = "Угроза > %";
-VUHDO_I18N_BOUQUET_NUM_IN_CLUSTER = "Игроки в кластере";
-VUHDO_I18N_BOUQUET_CLASS_COLOR = "Окраска по классу";
-VUHDO_I18N_BOUQUET_ALWAYS = "Всегда цельный";
-VUHDO_I18N_SWIFTMEND_POSSIBLE = "Восстановление";
-VUHDO_I18N_BOUQUET_MOUSEOVER_CLUSTER = "Под указателем мыши";
-VUHDO_I18N_THREAT_LEVEL_MEDIUM = "Высокая угроза";
-VUHDO_I18N_THREAT_LEVEL_HIGH = "Смешанная угроза";
-VUHDO_I18N_BOUQUET_STATUS_HEALTH = "Здоровье в %";
-VUHDO_I18N_BOUQUET_STATUS_MANA = "Мана  %";
-VUHDO_I18N_BOUQUET_STATUS_OTHER_POWERS = "Энергия в %";
-VUHDO_I18N_BOUQUET_STATUS_INCOMING = "Вход. исцеление в %";
-VUHDO_I18N_BOUQUET_STATUS_THREAT = "Угроза в %";
+VUHDO_I18N_BOUQUET_AGGRO = "Пометка: Угроза";
+VUHDO_I18N_BOUQUET_OUT_OF_RANGE = "Пометка: дальность, вне";
+VUHDO_I18N_BOUQUET_IN_RANGE = "Пометка: дальность, в";
+VUHDO_I18N_BOUQUET_IN_YARDS = "Пометка: Расстояние < метров";
+VUHDO_I18N_BOUQUET_OTHER_HOTS = "Пометка: ХоТы других игроков";
+VUHDO_I18N_BOUQUET_DEBUFF_DISPELLABLE = "Пометка: Дебаф, рассеиваемые";
+VUHDO_I18N_BOUQUET_DEBUFF_MAGIC = "Пометка: Дебаф - магия";
+VUHDO_I18N_BOUQUET_DEBUFF_DISEASE = "Пометка: Дебаф - болезнь";
+VUHDO_I18N_BOUQUET_DEBUFF_POISON = "Пометка: Дебаф - яд";
+VUHDO_I18N_BOUQUET_DEBUFF_CURSE = "Пометка: Дебаф - проклятие";
+VUHDO_I18N_BOUQUET_CHARMED = "Пометка: очарованный";
+VUHDO_I18N_BOUQUET_DEAD = "Пометка: Труп";
+VUHDO_I18N_BOUQUET_DISCONNECTED = "Пометка: разъединён";
+VUHDO_I18N_BOUQUET_AFK = "Пометка: AFK";
+VUHDO_I18N_BOUQUET_PLAYER_TARGET = "Пометка: Цель игрока";
+VUHDO_I18N_BOUQUET_MOUSEOVER_TARGET = "Пометка: Наведение мыши на 1 цель";
+VUHDO_I18N_BOUQUET_MOUSEOVER_GROUP = "Пометка: Наведение мыши на группу";
+VUHDO_I18N_BOUQUET_HEALTH_BELOW = "Пометка: Здоровье < %";
+VUHDO_I18N_BOUQUET_MANA_BELOW = "Пометка: Мана < %";
+VUHDO_I18N_BOUQUET_THREAT_ABOVE = "Пометка: Угроза > %";
+VUHDO_I18N_BOUQUET_NUM_IN_CLUSTER = "Пометка: Cluster >= #players";
+VUHDO_I18N_BOUQUET_CLASS_COLOR = "Пометка: Всегда окраска по классу";
+VUHDO_I18N_BOUQUET_ALWAYS = "Пометка: Всегда цельный";
+VUHDO_I18N_SWIFTMEND_POSSIBLE = "Пометка: Swiftmend possible";
+VUHDO_I18N_BOUQUET_MOUSEOVER_CLUSTER = "Пометка: Cluster, Mouseover";
+VUHDO_I18N_THREAT_LEVEL_MEDIUM = "Пометка: Угроза, высокая";
+VUHDO_I18N_THREAT_LEVEL_HIGH = "Пометка: Угроза, Overnuke";
+VUHDO_I18N_BOUQUET_STATUS_HEALTH = "Состояние: Здоровье %";
+VUHDO_I18N_BOUQUET_STATUS_MANA = "Состояние: Мана %";
+VUHDO_I18N_BOUQUET_STATUS_OTHER_POWERS = "Состояние: не-мана %";
+VUHDO_I18N_BOUQUET_STATUS_INCOMING = "Состояние: Вхд. Исцеление %";
+VUHDO_I18N_BOUQUET_STATUS_THREAT = "Состояние: Угроза %";
 VUHDO_I18N_BOUQUET_NEW_ITEM_NAME = "-- введите сюда (де)баф --";
 
 
-VUHDO_I18N_DEF_BOUQUET_TANK_COOLDOWNS = "Кулдауны танка";
-VUHDO_I18N_DEF_BOUQUET_PW_S_WEAKENED_SOUL = "Слово силы Щит";
-VUHDO_I18N_DEF_BOUQUET_BORDER_MULTI_AGGRO = "Границы и угроза";
-VUHDO_I18N_DEF_BOUQUET_BORDER_MULTI = "Несколько границ";
-VUHDO_I18N_DEF_BOUQUET_BORDER_SIMPLE = "Одна граница";
-VUHDO_I18N_DEF_BOUQUET_SWIFTMENDABLE = "Swift Mendable";
+VUHDO_I18N_DEF_BOUQUET_TANK_COOLDOWNS = "Восстоновления танка";
+VUHDO_I18N_DEF_BOUQUET_PW_S_WEAKENED_SOUL = "СС:Щ и Ослабленная душа";
+VUHDO_I18N_DEF_BOUQUET_BORDER_MULTI_AGGRO = "Границы: нескалько + угроза";
+VUHDO_I18N_DEF_BOUQUET_BORDER_MULTI = "Границы: нескалько";
+VUHDO_I18N_DEF_BOUQUET_BORDER_SIMPLE = "Границы: один";
+VUHDO_I18N_DEF_BOUQUET_SWIFTMENDABLE = "Swiftmendable";
 VUHDO_I18N_DEF_BOUQUET_MOUSEOVER_SINGLE = "Наведение мыши: один";
-VUHDO_I18N_DEF_BOUQUET_MOUSEOVER_MULTI = "Наведение мыши: несколько";
+VUHDO_I18N_DEF_BOUQUET_MOUSEOVER_MULTI = "Наведение мыши: нескалько";
 VUHDO_I18N_DEF_BOUQUET_AGGRO_INDICATOR = "Индикатор угрозы";
-VUHDO_I18N_DEF_BOUQUET_CLUSTER_MOUSE_HOVER = "Кластер: Mouse Hover";
-VUHDO_I18N_DEF_BOUQUET_THREAT_MARKS = "Метки при угрозе";
-VUHDO_I18N_DEF_BOUQUET_BAR_MANA_ALL = "Все виды энергии";
-VUHDO_I18N_DEF_BOUQUET_BAR_MANA_ONLY = "Полоса маны";
-VUHDO_I18N_DEF_BOUQUET_BAR_THREAT = "Уровень угрозы";
+VUHDO_I18N_DEF_BOUQUET_CLUSTER_MOUSE_HOVER = "Cluster: Mouse Hover";
+VUHDO_I18N_DEF_BOUQUET_THREAT_MARKS = "Угроза: метки";
+VUHDO_I18N_DEF_BOUQUET_BAR_MANA_ALL = "Мана полосы: Все виды энергии";
+VUHDO_I18N_DEF_BOUQUET_BAR_MANA_ONLY = "Мана полосы: Только мана";
+VUHDO_I18N_DEF_BOUQUET_BAR_THREAT = "Угроза: состояние";
 
 
-VUHDO_I18N_CUSTOM_ICON_NONE = "По умолчанию";
+VUHDO_I18N_CUSTOM_ICON_NONE = "- Нету / По умолчанию -";
 VUHDO_I18N_CUSTOM_ICON_GLOSSY = "Блестящий";
 VUHDO_I18N_CUSTOM_ICON_MOSAIC = "Мозаика";
-VUHDO_I18N_CUSTOM_ICON_CLUSTER = "Кластер";
+VUHDO_I18N_CUSTOM_ICON_CLUSTER = "Cluster";
 VUHDO_I18N_CUSTOM_ICON_FLAT = "Плоский";
 VUHDO_I18N_CUSTOM_ICON_SPOT = "Крапинка";
 VUHDO_I18N_CUSTOM_ICON_CIRCLE = "Круг";
@@ -338,9 +338,9 @@ VUHDO_I18N_INNER_BORDER = "Внутри";
 VUHDO_I18N_SWIFTMEND_INDICATOR = "Особый ДоТ";
 VUHDO_I18N_MOUSEOVER_HIGHLIGHTER = "Наведение мыши";
 VUHDO_I18N_THREAT_MARKS = "Метки угрозы";
-VUHDO_I18N_THREAT_BAR = "Полоса угрозы";
+VUHDO_I18N_THREAT_BAR = "Полоска угрозы";
 VUHDO_I18N_AGGRO_LINE = "Линия агро";
-VUHDO_I18N_MANA_BAR = "Полоса маны";
+VUHDO_I18N_MANA_BAR = "Полоска маны";
 VUHDO_I18N_BORDER_WIDTH = "Ширина";
 
 VUHDO_I18N_ERROR_NO_PROFILE = "Ошибка: Нету профиля с названием: ";
@@ -354,47 +354,47 @@ VUHDO_I18N_OVERWRITE = "Перезаписать";
 VUHDO_I18N_DISCARD = "Отвергнуть";
 
 -- 2.0, alpha #2
-VUHDO_I18N_DEF_BAR_BACKGROUND_SOLID = "Заливка";
-VUHDO_I18N_DEF_BAR_BACKGROUND_CLASS_COLOR = "Фон по цвету класса";
+VUHDO_I18N_DEF_BAR_BACKGROUND_SOLID = "Фон: цельный";
+VUHDO_I18N_DEF_BAR_BACKGROUND_CLASS_COLOR = "Фон: по цвету класса";
 
 -- 2.0 alpha #9
-VUHDO_I18N_BOUQUET_DEBUFF_BAR_COLOR = "Дебаф";
-VUHDO_I18N_BACKGROUND_BAR = "Фон полос";
+VUHDO_I18N_BOUQUET_DEBUFF_BAR_COLOR = "Пометка: Дебаф, конфигурируемый";
+VUHDO_I18N_BACKGROUND_BAR = "Фон полоски";
 
 -- 2.0 alpha #11
-VUHDO_I18N_HEALTH_BAR = "Полоса здоровья";
-VUHDO_I18N_DEF_BOUQUET_BAR_HEALTH = "Полоса здоровья: (типичный)";
-VUHDO_I18N_UPDATE_RAID_TARGET = "Цвет цели рейда";
-VUHDO_I18N_BOUQUET_OVERHEAL_HIGHLIGHT = "Избыточное лечение";
-VUHDO_I18N_BOUQUET_EMERGENCY_COLOR = "Критическое положение";
-VUHDO_I18N_BOUQUET_HEALTH_ABOVE = "Здоровье > %";
-VUHDO_I18N_BOUQUET_RESURRECTION = "Воскрешение";
-VUHDO_I18N_BOUQUET_STACKS_COLOR = "Цвет стаков";
+VUHDO_I18N_HEALTH_BAR = "Полоска здоровья";
+VUHDO_I18N_DEF_BOUQUET_BAR_HEALTH = "Полоска здоровья: (типичный)";
+VUHDO_I18N_UPDATE_RAID_TARGET = "Пометка: Цвет цели рейда";
+VUHDO_I18N_BOUQUET_OVERHEAL_HIGHLIGHT = "Цвет: подсветка избыточного лечения";
+VUHDO_I18N_BOUQUET_EMERGENCY_COLOR = "Цвет: критическое положение";
+VUHDO_I18N_BOUQUET_HEALTH_ABOVE = "Пометка: Здоровье > %";
+VUHDO_I18N_BOUQUET_RESURRECTION = "Пометка: воскресение";
+VUHDO_I18N_BOUQUET_STACKS_COLOR = "Цвет: #Stacks";
 
 -- 2.1
-VUHDO_I18N_DEF_BOUQUET_BAR_HEALTH_SOLID = "Здоровье: (твердый)";
-VUHDO_I18N_DEF_BOUQUET_BAR_HEALTH_CLASS_COLOR = "Здоровье: (цвет класса)";
+VUHDO_I18N_DEF_BOUQUET_BAR_HEALTH_SOLID = "Health: (generic, solid)";
+VUHDO_I18N_DEF_BOUQUET_BAR_HEALTH_CLASS_COLOR = "Health: (generic, class col)";
 
 -- 2.9
-VUHDO_I18N_NO_TARGET = "[нет цели]";
-VUHDO_I18N_TT_LEFT = " ЛКМ: ";
-VUHDO_I18N_TT_RIGHT = " ПКМ: ";
-VUHDO_I18N_TT_MIDDLE = " СКМ: ";
-VUHDO_I18N_TT_BTN_4 = " Кнопка 4: ";
-VUHDO_I18N_TT_BTN_5 = " Кнопка 5: ";
-VUHDO_I18N_TT_WHEEL_UP = " Вверх: ";
-VUHDO_I18N_TT_WHEEL_DOWN = " Вниз: ";
+VUHDO_I18N_NO_TARGET = "[no target]";
+VUHDO_I18N_TT_LEFT = " Left: ";
+VUHDO_I18N_TT_RIGHT = " Right: ";
+VUHDO_I18N_TT_MIDDLE = " Middle: ";
+VUHDO_I18N_TT_BTN_4 = " Button 4: ";
+VUHDO_I18N_TT_BTN_5 = " Button 5: ";
+VUHDO_I18N_TT_WHEEL_UP = " Wheel up: ";
+VUHDO_I18N_TT_WHEEL_DOWN = " Wheel down: ";
 
 
 -- 2.13
-VUHDO_I18N_BOUQUET_CLASS_ICON = "Иконка: Класс";
-VUHDO_I18N_BOUQUET_RAID_ICON = "Иконка: Цель рейда";
-VUHDO_I18N_BOUQUET_ROLE_ICON = "Иконка: Роль";
+VUHDO_I18N_BOUQUET_CLASS_ICON = "Icon: Class";
+VUHDO_I18N_BOUQUET_RAID_ICON = "Icon: Raid target";
+VUHDO_I18N_BOUQUET_ROLE_ICON = "Icon: Role";
 
 -- 2.18
-VUHDO_I18N_LOAD_PROFILE = "Загрузить профиль";
+VUHDO_I18N_LOAD_PROFILE = "Load Profile";
 
 -- 2.20
-VUHDO_I18N_DC_SHIELD_NO_MACROS = "Нет свободных слотов в макросах.";
-VUHDO_I18N_BROKER_TOOLTIP_1 = "|cffffff00Левый клик|r чтобы показать меню опций";
-VUHDO_I18N_BROKER_TOOLTIP_2 = "|cffffff00Правый клик|r чтобы показать всплывающее меню";
+VUHDO_I18N_DC_SHIELD_NO_MACROS = "No free macro slots for this toon... d/c shield temporarily disabled.";
+VUHDO_I18N_BROKER_TOOLTIP_1 = "|cffffff00Left Click|r to show options menu";
+VUHDO_I18N_BROKER_TOOLTIP_2 = "|cffffff00Right Click|r to show popup menu";

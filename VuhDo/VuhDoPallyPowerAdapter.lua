@@ -1,5 +1,6 @@
 local pairs = pairs;
 
+
 local VUHDO_CLASS_MAPPINGS = {
 	["1"] = "WARRIOR",
 	["2"] = "ROGUE",
@@ -10,8 +11,10 @@ local VUHDO_CLASS_MAPPINGS = {
 	["7"] = "MAGE",
 	["8"] = "WARLOCK",
 	["9"] = "SHAMAN",
-	["10"] = "DEATHKNIGHT"
+	["10"] = "DEATHKNIGHT",
 };
+
+
 
 local VUHDO_CLASS_MAPPINGS_REV = {
 	["WARRIOR"] = "1",
@@ -23,24 +26,30 @@ local VUHDO_CLASS_MAPPINGS_REV = {
 	["MAGE"] = "7",
 	["WARLOCK"] = "8",
 	["SHAMAN"] = "9",
-	["DEATHKNIGHT"] = "10"
+	["DEATHKNIGHT"] = "10",
 };
+
+
 
 local VUHDO_BUFF_MAPPINGS = {
 	["0"] = "",
 	["1"] = VUHDO_SPELL_ID_BUFF_BLESSING_OF_WISDOM,
 	["2"] = VUHDO_SPELL_ID_BUFF_BLESSING_OF_MIGHT,
 	["3"] = VUHDO_SPELL_ID_BUFF_BLESSING_OF_THE_KINGS,
-	["4"] = VUHDO_SPELL_ID_BUFF_BLESSING_OF_SANCTUARY
+	["4"] = VUHDO_SPELL_ID_BUFF_BLESSING_OF_SANCTUARY,
 };
+
+
 
 local VUHDO_BUFF_MAPPINGS_REV = {
 	[""] = "0",
 	[VUHDO_SPELL_ID_BUFF_BLESSING_OF_WISDOM] = "1",
 	[VUHDO_SPELL_ID_BUFF_BLESSING_OF_MIGHT] = "2",
 	[VUHDO_SPELL_ID_BUFF_BLESSING_OF_THE_KINGS] = "3",
-	[VUHDO_SPELL_ID_BUFF_BLESSING_OF_SANCTUARY] = "4"
+	[VUHDO_SPELL_ID_BUFF_BLESSING_OF_SANCTUARY] = "4",
 };
+
+
 
 local VUHDO_AURA_MAPPINGS = {
 	["0"] = "",
@@ -50,8 +59,10 @@ local VUHDO_AURA_MAPPINGS = {
 	["4"] = VUHDO_SPELL_ID_BUFF_SHADOW_RESISTANCE_AURA,
 	["5"] = VUHDO_SPELL_ID_BUFF_FROST_RESISTANCE_AURA,
 	["6"] = VUHDO_SPELL_ID_BUFF_FIRE_RESISTANCE_AURA,
-	["7"] = VUHDO_SPELL_ID_BUFF_CRUSADER_AURA
+	["7"] = VUHDO_SPELL_ID_BUFF_CRUSADER_AURA,
 };
+
+
 
 local VUHDO_AURA_MAPPINGS_REV = {
 	[""] = "0",
@@ -61,8 +72,10 @@ local VUHDO_AURA_MAPPINGS_REV = {
 	[VUHDO_SPELL_ID_BUFF_SHADOW_RESISTANCE_AURA] = "4",
 	[VUHDO_SPELL_ID_BUFF_FROST_RESISTANCE_AURA] = "5",
 	[VUHDO_SPELL_ID_BUFF_FIRE_RESISTANCE_AURA] = "6",
-	[VUHDO_SPELL_ID_BUFF_CRUSADER_AURA] = "7"
+	[VUHDO_SPELL_ID_BUFF_CRUSADER_AURA] = "7",
 };
+
+
 
 --
 function VUHDO_parsePallyPowerMessage(anArg2, anArg3, anArg4)
@@ -70,9 +83,10 @@ function VUHDO_parsePallyPowerMessage(anArg2, anArg3, anArg4)
 		return;
 	end
 
-	-- VUHDO_xMsg(anArg2, anArg3, anArg4);
+	--VUHDO_xMsg(anArg2, anArg3, anArg4);
 
 	local tCommand, tName, tArg3, tArg4 = strsplit(" ", anArg2);
+
 
 	if ("CLEAR" == tCommand) then
 		local tCategName = strsub(VUHDO_I18N_BUFFC_BLESSING, 3);
@@ -103,7 +117,7 @@ function VUHDO_parsePallyPowerMessage(anArg2, anArg3, anArg4)
 			if (tClassName == nil or tBuffName == nil) then
 				return;
 			end
-			-- VUHDO_xMsg("Assign", tName, tClassName, tBuffName);
+			--VUHDO_xMsg("Assign", tName, tClassName, tBuffName);
 			VUHDO_BUFF_SETTINGS[tCategName]["classes"][tClassName] = tBuffName;
 		elseif ("MASSIGN" == tCommand) then
 			local tCategName = strsub(VUHDO_I18N_BUFFC_BLESSING, 3);
@@ -120,7 +134,7 @@ function VUHDO_parsePallyPowerMessage(anArg2, anArg3, anArg4)
 				VUHDO_BUFF_SETTINGS[tCategName]["classes"][tKey] = tBuffName;
 			end
 
-			-- VUHDO_xMsg("Multi-Assign", tName, tBuffName);
+			--VUHDO_xMsg("Multi-Assign", tName, tBuffName);
 		elseif ("AASSIGN" == tCommand) then
 			local tCategName = strsub(VUHDO_I18N_BUFFC_AURA, 3);
 			if (not VUHDO_BUFF_SETTINGS[tCategName]["enabled"]) then
@@ -132,8 +146,8 @@ function VUHDO_parsePallyPowerMessage(anArg2, anArg3, anArg4)
 				return;
 			end
 			VUHDO_BUFF_SETTINGS[tCategName]["buff"] = tAuraName;
-			-- VUHDO_Msg(tCategName);
-			-- VUHDO_xMsg("Aura-Assign", tName, tAuraName);
+			--VUHDO_Msg(tCategName);
+			--VUHDO_xMsg("Aura-Assign", tName, tAuraName);
 		end
 	end
 
@@ -141,10 +155,14 @@ function VUHDO_parsePallyPowerMessage(anArg2, anArg3, anArg4)
 	VUHDO_updateBuffPanel();
 end
 
+
+
 --
 local function VUHDO_sendPallyPowerMessage(aMessage)
 	SendAddonMessage("PLPWR", aMessage, VUHDO_getAddOnDistribution());
 end
+
+
 
 --
 function VUHDO_sendPallyPowerAuraUpdate(aNewAuraName)
@@ -160,6 +178,8 @@ function VUHDO_sendPallyPowerAuraUpdate(aNewAuraName)
 	VUHDO_sendPallyPowerMessage(tMessage);
 end
 
+
+
 --
 function VUHDO_sendPallyPowerBlessingUpdate(aNewBlessingName, aTargetClass)
 	if (not VUHDO_CONFIG["IS_PALLY_POWER_COMMS"]) then
@@ -174,6 +194,8 @@ function VUHDO_sendPallyPowerBlessingUpdate(aNewBlessingName, aTargetClass)
 	local tMessage = "ASSIGN " .. VUHDO_PLAYER_NAME .. " " .. tClassNum .. " " .. tBuffNum;
 	VUHDO_sendPallyPowerMessage(tMessage);
 end
+
+
 
 --
 function VUHDO_sendPallyPowerRequest()

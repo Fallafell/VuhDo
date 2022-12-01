@@ -21,9 +21,11 @@ local GetSpellInfo = GetSpellInfo;
 local pairs = pairs;
 local _ = _;
 
+
+
 -- returns an array of numbers sequentially found in a string
 local tCnt;
-local tNumbers = {};
+local tNumbers = { };
 local tIndex;
 local tStrlen;
 local tDigit;
@@ -56,6 +58,8 @@ function VUHDO_getNumbersFromString(aName, aMaxAnz)
 	return tNumbers;
 end
 
+
+
 --
 local tValue;
 function VUHDO_tableUniqueAdd(aTable, aValue)
@@ -69,6 +73,8 @@ function VUHDO_tableUniqueAdd(aTable, aValue)
 	return true;
 end
 
+
+
 ----------------------------------------------------
 local VUHDO_RAID_NAMES;
 local VUHDO_RAID;
@@ -78,6 +84,7 @@ local VUHDO_GROUPS_BUFFS;
 local sRangeSpell;
 local sIsGuessRange = true;
 local sScanRange;
+
 
 --
 local VUHDO_updateBouquetsForEvent;
@@ -93,6 +100,8 @@ function VUHDO_toolboxInitBurst()
 	sIsGuessRange = VUHDO_CONFIG["RANGE_PESSIMISTIC"] or GetSpellInfo(VUHDO_CONFIG["RANGE_SPELL"]) == nil;
 end
 
+
+
 local VUHDO_PROFILE_TIMER = 0; -- Profilers starting time stamp
 
 -- Init by setting start time stamp
@@ -101,19 +110,25 @@ function VUHDO_initProfiler()
 	VUHDO_PROFILE_TIMER = GetTime() * 1000;
 end
 
+
+
 -- Dump the duration in ms since profiler has been initialized
 function VUHDO_seeProfiler()
 	local tTimeDelta = floor(GetTime() * 1000 - VUHDO_PROFILE_TIMER);
 	VUHDO_Msg("Duration: " .. tTimeDelta);
 end
 
+
+
 --
--- local tInfo;
--- function VUHDO_dumpRaid()
+--local tInfo;
+--function VUHDO_dumpRaid()
 --	for _, tInfo in pairs(VUHDO_RAID) do
 --		VUHDO_Msg(tInfo.name .. ": " .. tInfo.unit);
 --	end
--- end
+--end
+
+
 
 -- Print chat frame line with no "{Vuhdo} prefix
 function VUHDO_MsgC(aMessage, aRed, aGreen, aBlue)
@@ -123,6 +138,8 @@ function VUHDO_MsgC(aMessage, aRed, aGreen, aBlue)
 
 	DEFAULT_CHAT_FRAME:AddMessage(aMessage, aRed, aGreen, aBlue);
 end
+
+
 
 --
 local tMessage;
@@ -149,11 +166,15 @@ local function VUHDO_argumentToText(anArgument)
 	return tMessage;
 end
 
+
+
 -- Print a standard chat frame
 function VUHDO_Msg(aMessage, aRed, aGreen, aBlue)
 	aMessage = VUHDO_argumentToText(aMessage);
 	VUHDO_MsgC("|cffffe566{VuhDo}|r " .. aMessage, aRed, aGreen, aBlue)
 end
+
+
 
 --
 local tText;
@@ -168,6 +189,8 @@ function VUHDO_xMsg(...)
 	VUHDO_MsgC(tText);
 end
 
+
+
 -- Returns the type of a given model id
 function VUHDO_getModelType(aModelId)
 	if ((aModelId >= 1 and aModelId <= 8) or aModelId == 10) then -- VUHDO_ID_GROUP_1 -- VUHDO_ID_GROUP_8 -- VUHDO_ID_GROUP_OWN
@@ -175,11 +198,13 @@ function VUHDO_getModelType(aModelId)
 	elseif (aModelId >= 20 and aModelId <= 29) then -- VUHDO_ID_WARRIORS -- VUHDO_ID_DEATH_KNIGHT
 		return 1; -- VUHDO_ID_TYPE_CLASS
 	elseif (aModelId == 0) then -- VUHDO_ID_UNDEFINED
-		return 0; -- VUHDO_ID_TYPE_UNDEFINED
+	  return 0; -- VUHDO_ID_TYPE_UNDEFINED
 	else
 		return 3; -- VUHDO_ID_TYPE_SPECIAL
 	end
 end
+
+
 
 -- returns unit-prefix, pet-prefix and maximum number of players in a party
 function VUHDO_getUnitIds()
@@ -192,6 +217,8 @@ function VUHDO_getUnitIds()
 	end
 end
 local VUHDO_getUnitIds = VUHDO_getUnitIds;
+
+
 
 -- Extracts unit number from a Unit's name
 local tUnitNo;
@@ -210,6 +237,8 @@ function VUHDO_getUnitNo(aUnit)
 end
 local VUHDO_getUnitNo = VUHDO_getUnitNo;
 
+
+
 -- returns the units subgroup number, or 0 for pets/focus
 local tGroupNo;
 function VUHDO_getUnitGroup(aUnit, anIsPet)
@@ -223,6 +252,8 @@ function VUHDO_getUnitGroup(aUnit, anIsPet)
 	end
 end
 
+
+
 -- returns wether or not a unit is in range
 function VUHDO_isInRange(aUnit)
 	if ("focus" == aUnit or "target" == aUnit) then
@@ -230,85 +261,89 @@ function VUHDO_isInRange(aUnit)
 	elseif (sIsGuessRange) then
 		return UnitInRange(aUnit);
 	else
-		-- return UnitInRange(aUnit) or (1 == IsSpellInRange(sRangeSpell, aUnit));
+		--return UnitInRange(aUnit) or (1 == IsSpellInRange(sRangeSpell, aUnit));
 		return 1 == IsSpellInRange(sRangeSpell, aUnit);
 	end
 end
 
+
+
 -- Parses a aString line into an array of arguments
 function VUHDO_textParse(aString)
-	local tTextLen = 1;
-	local tOutStrings = {};
-	local tTextNum = 1;
-	local tStartIdx = 1;
-	local tStopIdx = 1;
-	local tTextIdxStart = 1;
-	local tTextIdxStop = 1;
-	local tTextLeft = 1;
-	local tNextSpaceIdx = 1;
-	local tTextChunk = "";
-	local tAnzIterations = 1;
-	local tIsErroneous = false;
+   local tTextLen = 1;
+   local tOutStrings = {};
+   local tTextNum = 1;
+   local tStartIdx = 1;
+   local tStopIdx = 1;
+   local tTextIdxStart = 1;
+   local tTextIdxStop = 1;
+   local tTextLeft = 1;
+   local tNextSpaceIdx = 1;
+   local tTextChunk = "";
+   local tAnzIterations = 1;
+   local tIsErroneous = false;
 
-	if ((aString ~= nil) and (aString ~= "")) then
-		while (string.find(aString, "  ") ~= nil) do
-			aString = string.gsub(aString, "  ", " ");
-		end
+   if ((aString ~= nil) and (aString ~= "")) then
+      while (string.find(aString, "  ") ~= nil) do
+     	  aString = string.gsub(aString, "  ", " ");
+      end
 
-		if (string.len(aString) <= 1) then
-			tIsErroneous = true;
-		end
+      if (string.len(aString) <= 1) then
+         tIsErroneous = true;
+      end
 
-		if tIsErroneous ~= true then
-			tTextIdxStart = 1;
-			tTextIdxStop = string.len(aString);
+      if tIsErroneous ~= true then
+        tTextIdxStart = 1;
+        tTextIdxStop = string.len(aString);
 
-			if (string.sub(aString, tTextIdxStart, tTextIdxStart) == " ") then
-				tTextIdxStart = tTextIdxStart + 1;
-			end
+        if (string.sub(aString, tTextIdxStart, tTextIdxStart) == " ") then
+           tTextIdxStart = tTextIdxStart+1;
+        end
 
-			if (string.sub(aString, tTextIdxStop, tTextIdxStop) == " ") then
-				tTextIdxStop = tTextIdxStop - 1;
-			end
+        if (string.sub(aString, tTextIdxStop, tTextIdxStop) == " ") then
+           tTextIdxStop = tTextIdxStop-1;
+        end
 
-			aString = string.sub(aString, tTextIdxStart, tTextIdxStop);
-		end
+        aString = string.sub(aString, tTextIdxStart, tTextIdxStop);
+      end
 
-		tTextNum = 1;
-		tTextLeft = string.len(aString);
+      tTextNum = 1;
+      tTextLeft = string.len(aString);
 
-		while (tStartIdx <= tTextLeft) and (tIsErroneous ~= true) do
+      while (tStartIdx <= tTextLeft) and (tIsErroneous ~= true) do
 
-			tNextSpaceIdx = string.find(aString, " ", tStartIdx);
-			if (tNextSpaceIdx ~= nil) then
-				tStopIdx = (tNextSpaceIdx - 1);
-			else
-				tStopIdx = string.len(aString);
-				LetsEnd = true;
-			end
+         tNextSpaceIdx = string.find(aString, " ",tStartIdx);
+         if (tNextSpaceIdx ~= nil) then
+            tStopIdx = (tNextSpaceIdx - 1);
+         else
+            tStopIdx = string.len(aString);
+            LetsEnd = true;
+         end
 
-			tTextChunk = string.sub(aString, tStartIdx, tStopIdx);
-			tOutStrings[tTextNum] = tTextChunk;
-			tTextNum = tTextNum + 1;
+         tTextChunk = string.sub(aString, tStartIdx, tStopIdx);
+         tOutStrings[tTextNum] = tTextChunk;
+         tTextNum = tTextNum + 1;
 
-			tStartIdx = tStopIdx + 2;
+         tStartIdx = tStopIdx + 2;
 
-		end
-	else
-		tOutStrings[1] = "Error: Bad value passed to TextParse!";
-	end
+      end
+   else
+      tOutStrings[1] = "Error: Bad value passed to TextParse!";
+   end
 
-	if (tIsErroneous ~= true) then
-		return tOutStrings;
-	else
-		return {"Error: Bad value passed to TextParse!"};
-	end
+   if (tIsErroneous ~= true) then
+      return tOutStrings;
+   else
+      return {"Error: Bad value passed to TextParse!"};
+   end
 end
+
+
 
 -- Returns a "deep" copy of a table,
 -- which means containing tables will be copies value-wise, not by reference
 function VUHDO_deepCopyTable(aTable)
-	local tDestTable = {};
+	local tDestTable = { };
 	local tKey, tValue;
 
 	for tKey, tValue in pairs(aTable) do
@@ -322,10 +357,14 @@ function VUHDO_deepCopyTable(aTable)
 	return tDestTable;
 end
 
+
+
 -- Tokenizes a String into an array of strings, which were delimited by "aChar"
 function VUHDO_splitString(aText, aChar)
-	return {strsplit(aChar, aText)};
+	return { strsplit(aChar, aText) };
 end
+
+
 
 -- returns true if player currently is in a battleground
 local tType;
@@ -335,16 +374,20 @@ function VUHDO_isInBattleground()
 end
 local VUHDO_isInBattleground = VUHDO_isInBattleground;
 
+
+
 -- returns the appropriate addon message channel for player
 function VUHDO_getAddOnDistribution()
 	if (VUHDO_isInBattleground()) then
 		return "BATTLEGROUND";
-	elseif (UnitInRaid("player")) then
+	elseif(UnitInRaid("player")) then
 		return "RAID";
 	else
 		return "PARTY";
 	end
 end
+
+
 
 -- returns the players rank in a raid which is 0 = raid member, 1 = assist, 2 = leader
 -- returns leader if not in raid, and member if solo, as no main tank are needed
@@ -368,6 +411,8 @@ function VUHDO_getPlayerRank()
 	return 2, true;
 end
 
+
+
 -- returns the units rank in a raid which is 0 = raid member, 1 = assist, 2 = leader
 -- returns 2 if not in raid
 local tRank, tIsMl;
@@ -379,6 +424,8 @@ function VUHDO_getUnitRank(aUnit)
 
 	return 2, true;
 end
+
+
 
 -- returns the raid unit of player eg. "raid13" or "party4"
 local tCnt, tRaidUnit;
@@ -395,15 +442,19 @@ function VUHDO_getPlayerRaidUnit()
 end
 local VUHDO_getPlayerRaidUnit = VUHDO_getPlayerRaidUnit;
 
+
+
 --
-local tEmpty = {};
+local tEmpty = { };
 function VUHDO_getNumGroupMembers(aGroupId)
 	return #(VUHDO_GROUPS[aGroupId] or tEmpty);
 end
 
+
+
 --
 local tZone, tIndex, tMap;
-local tEmpty = {};
+local tEmpty = { };
 function VUHDO_getUnitZoneName(aUnit)
 	tInfo = VUHDO_RAID[aUnit];
 	if (tInfo == nil) then
@@ -416,15 +467,15 @@ function VUHDO_getUnitZoneName(aUnit)
 		tIndex = (VUHDO_RAID[aUnit] or tEmpty)["number"] or 1;
 		_, _, _, _, _, _, tZone, _, _ = GetRaidRosterInfo(tIndex);
 	else
-		if (not VuhDoScanTooltip:IsOwned(VuhDo)) then
-			VuhDoScanTooltip:SetOwner(VuhDo, "ANCHOR_NONE");
-			VuhDoScanTooltip:ClearLines();
-		end
-		VuhDoScanTooltip:SetUnit(aUnit)
-		tZone = VuhDoScanTooltipTextLeft3:GetText();
-		if (tZone == "PvP") then
-			tZone = VuhDoScanTooltipTextLeft4:GetText();
-		end
+    if (not VuhDoScanTooltip:IsOwned(VuhDo)) then
+    	VuhDoScanTooltip:SetOwner(VuhDo, "ANCHOR_NONE");
+	    VuhDoScanTooltip:ClearLines();
+    end
+    VuhDoScanTooltip:SetUnit(aUnit)
+    tZone = VuhDoScanTooltipTextLeft3:GetText();
+    if (tZone == "PvP") then
+    	tZone = VuhDoScanTooltipTextLeft4:GetText();
+    end
 	end
 
 	if (tZone == nil or strfind(tZone, "Level", 1, true)) then
@@ -434,15 +485,19 @@ function VUHDO_getUnitZoneName(aUnit)
 	return tZone, tMap;
 end
 
+
+
 --
 local tZoneOkay;
 local tUnitZone, tPlayerZone;
 local tIdx;
-local tEmptyZone = {};
+local tEmptyZone = { };
 function VUHDO_isInSameZone(aUnit)
 	return (VUHDO_RAID[aUnit] or tEmptyZone)["map"] == (VUHDO_RAID["player"] or tEmptyZone)["map"];
 end
 local VUHDO_isInSameZone = VUHDO_isInSameZone;
+
+
 
 -- Returns health of unit info in Percent
 local tHealthMax;
@@ -459,10 +514,14 @@ function VUHDO_getUnitHealthPercent(anInfo)
 	end
 end
 
+
+
 --
 function VUHDO_isSpellKnown(aSpellName)
 	return GetSpellInfo(aSpellName) ~= nil;
 end
+
+
 
 --
 local tDeltaSecs;
@@ -475,12 +534,14 @@ function VUHDO_getDurationTextSince(aStartTime)
 
 	if (tDeltaSecs >= 3600) then
 		return "(|cffffffff" .. floor(tDeltaSecs / 360) * 0.1 .. " hours|r)";
-	elseif (tDeltaSecs >= 60) then
+	elseif(tDeltaSecs >= 60) then
 		return "(|cffffffff" .. floor(tDeltaSecs / 60) .. " mins|r)";
 	else
 		return "(|cffffffff" .. floor(tDeltaSecs) .. " secs|r)";
 	end
 end
+
+
 
 --
 local tDistance;
@@ -495,6 +556,8 @@ function VUHDO_getDistanceText(aUnit)
 	end
 
 end
+
+
 
 --
 local tPet;
@@ -512,6 +575,8 @@ function VUHDO_getPetUnit(anOwnerUnit)
 	end
 end
 
+
+
 --
 function VUHDO_getTargetUnit(aSourceUnit)
 	if ("player" == aSourceUnit) then
@@ -520,6 +585,8 @@ function VUHDO_getTargetUnit(aSourceUnit)
 		return aSourceUnit .. "target";
 	end
 end
+
+
 
 --
 function VUHDO_getResurrectionSpells()
@@ -536,6 +603,8 @@ function VUHDO_getResurrectionSpells()
 	end
 end
 
+
+
 --
 local tBtnUnit;
 local tBtnName;
@@ -543,9 +612,11 @@ function VUHDO_resolveButtonUnit(aButton)
 	return aButton:GetAttribute("unit");
 end
 
+
+
 --
 local tInfo;
-local tEmptyInfo = {};
+local tEmptyInfo = { };
 function VUHDO_resolveVehicleUnit(aUnit)
 	tInfo = VUHDO_RAID[aUnit] or tEmptyInfo;
 	if (tInfo["isPet"] and (VUHDO_RAID[tInfo["ownerUnit"]] or tEmptyInfo)["isVehicle"]) then
@@ -555,6 +626,8 @@ function VUHDO_resolveVehicleUnit(aUnit)
 	end
 end
 
+
+
 --
 local tBtnInfo;
 local tButtons;
@@ -562,23 +635,29 @@ function VUHDO_getUnitButtons(aUnit)
 	return VUHDO_UNIT_BUTTONS[aUnit];
 end
 
+
+
 --
 function VUHDO_getBuffVariantMaxTarget(someVariants)
 	return someVariants[2] or someVariants[1];
 end
+
+
 
 --
 function VUHDO_getBuffVariantSingleTarget(someVariants)
 	return someVariants[1];
 end
 
+
+
 --
-local tEmpty = {};
+local tEmpty = { };
 local tInfo;
 function VUHDO_shouldScanUnit(aUnit)
-	tInfo = VUHDO_RAID[aUnit] or tEmpty;
-	if (not tInfo["connected"] or tInfo["dead"]) then
-		return true;
+  tInfo = VUHDO_RAID[aUnit] or tEmpty;
+  if (not tInfo["connected"] or tInfo["dead"]) then
+    return true;
 	elseif (sScanRange == 1) then
 		return VUHDO_isInSameZone(aUnit);
 	elseif (sScanRange == 2) then
@@ -589,6 +668,8 @@ function VUHDO_shouldScanUnit(aUnit)
 		return true;
 	end
 end
+
+
 
 --
 local tNumBytes, tNumChars;

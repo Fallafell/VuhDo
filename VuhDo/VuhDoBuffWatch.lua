@@ -1089,7 +1089,7 @@ function VUHDO_updateBuffSwatch(aSwatch)
 				if (tGoodTarget == nil or #tOorGroup > 0) then
 					VUHDO_setBuffSwatchInfo(tSwatchName, VUHDO_I18N_BW_RNG_YELLOW);
 					VUHDO_setBuffSwatchCount(tSwatchName, "" .. #tOorGroup);
-					VUHDO_setBuffSwatchTimer(tSwatchName, 0, tMaxCount);
+					VUHDO_setBuffSwatchTimer(tSwatchName, 0, nil, tMaxCount);
 				else
 					VUHDO_setBuffSwatchInfo(tSwatchName, VUHDO_I18N_BW_GO);
 					VUHDO_setBuffSwatchCount(tSwatchName, "" .. (#tMissGroup + #tLowGroup));

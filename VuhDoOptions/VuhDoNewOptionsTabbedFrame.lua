@@ -220,7 +220,7 @@ function VUHDO_newOptionsRestoreVars()
 		+ VUHDO_countTableDiffs(VUHDO_BOUQUETS, VUHDO_B_BOUQUETS);
 
 	if (tChanges > 0) then
-		VuhDoYesNoFrameText:SetText("Вы изменили настройки: " .. tChanges .. " шт.\nХотите выйти без сохранения?");
+		VuhDoYesNoFrameText:SetText("You have made a total of " .. tChanges .. " setup changes.\nYou really wanna DISCARD them?");
 		VuhDoYesNoFrame:SetAttribute("callback", VUHDO_yesNoDiscardChangesCallback);
 		VuhDoYesNoFrame:Show();
 	else

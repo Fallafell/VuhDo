@@ -1,10 +1,13 @@
+
 local VUHDO_FULL_DURATION_DEBUFFS = {
-	[GetSpellInfo(73912)] = true -- Necrotic Plague, Lich King
+	[GetSpellInfo(73912)] = true, -- Necrotic Plague, Lich King
 };
+
+
 
 VUHDO_MAY_DEBUFF_ANIM = true;
 
-local VUHDO_DEBUFF_ICONS = {};
+local VUHDO_DEBUFF_ICONS = { };
 local sScale, sIsAnim, sIsTimer, sIsStacks, sIsName;
 
 -- BURST CACHE ---------------------------------------------------
@@ -28,7 +31,7 @@ local VUHDO_CONFIG;
 local sCuDeConfig;
 
 function VUHDO_customDebuffIconsInitBurst()
-	-- functions
+ 	-- functions
 	VUHDO_getUnitButtons = VUHDO_GLOBAL["VUHDO_getUnitButtons"];
 	VUHDO_getBarIconTimer = VUHDO_GLOBAL["VUHDO_getBarIconTimer"];
 	VUHDO_getBarIconCounter = VUHDO_GLOBAL["VUHDO_getBarIconCounter"];
@@ -58,75 +61,77 @@ local tIconIndex;
 local function VUHDO_animateDebuffIcon(aButton, someIconInfos, aNow)
 	for tCnt = 1, sMaxIcons do
 		tIconIndex = tCnt + 39;
-		tIconInfo = someIconInfos[tCnt];
-		if (tIconInfo ~= nil) then
-			tCuDeStoConfig = sCuDeConfig["STORED_SETTINGS"][tIconInfo[3]];
-			if (tCuDeStoConfig == nil) then
-				sIsAnim = sCuDeConfig["animate"] and VUHDO_MAY_DEBUFF_ANIM;
-				sIsTimer = sCuDeConfig["timer"];
-				sIsStacks = sCuDeConfig["isStacks"];
-			else
-				sIsAnim = tCuDeStoConfig["animate"] and VUHDO_MAY_DEBUFF_ANIM;
-				sIsTimer = tCuDeStoConfig["timer"];
-				sIsStacks = tCuDeStoConfig["isStacks"];
-			end
-			sIsName = sCuDeConfig["isName"];
-			tExpiry = tIconInfo[4];
+  	tIconInfo = someIconInfos[tCnt];
+  	if (tIconInfo ~= nil) then
+  		tCuDeStoConfig = sCuDeConfig["STORED_SETTINGS"][tIconInfo[3]];
+     	if (tCuDeStoConfig == nil) then
+     		sIsAnim = sCuDeConfig["animate"] and VUHDO_MAY_DEBUFF_ANIM;
+     		sIsTimer = sCuDeConfig["timer"];
+     		sIsStacks = sCuDeConfig["isStacks"];
+     	else
+     		sIsAnim = tCuDeStoConfig["animate"] and VUHDO_MAY_DEBUFF_ANIM;
+     		sIsTimer = tCuDeStoConfig["timer"];
+     		sIsStacks = tCuDeStoConfig["isStacks"];
+     	end
+     	sIsName = sCuDeConfig["isName"];
+  		tExpiry = tIconInfo[4];
 
-			if (sIsTimer and tExpiry ~= nil) then
-				tRemain = tExpiry - aNow;
-				if (tRemain >= 0 and (tRemain < 10 or VUHDO_FULL_DURATION_DEBUFFS[tIconInfo[3]])) then
-					VUHDO_getBarIconTimer(aButton, tIconIndex):SetText(floor(tRemain));
-				else
-					VUHDO_getBarIconTimer(aButton, tIconIndex):SetText("");
-				end
-			end
+      if (sIsTimer and tExpiry ~= nil) then
+      	tRemain = tExpiry - aNow;
+      	if (tRemain >= 0 and (tRemain < 10 or VUHDO_FULL_DURATION_DEBUFFS[tIconInfo[3]])) then
+      		VUHDO_getBarIconTimer(aButton, tIconIndex):SetText(floor(tRemain));
+      	else
+      		VUHDO_getBarIconTimer(aButton, tIconIndex):SetText("");
+      	end
+      end
 
-			tStacks = tIconInfo[5];
-			if (sIsStacks and (tStacks or 0) > 1) then
-				VUHDO_getBarIconCounter(aButton, tIconIndex):SetText(tStacks);
-			else
-				VUHDO_getBarIconCounter(aButton, tIconIndex):SetText("");
-			end
+	  	tStacks = tIconInfo[5];
+      if (sIsStacks and (tStacks or 0) > 1) then
+      	VUHDO_getBarIconCounter(aButton, tIconIndex):SetText(tStacks);
+      else
+      	VUHDO_getBarIconCounter(aButton, tIconIndex):SetText("");
+      end
 
-			tIconFrame = VUHDO_getBarIconFrame(aButton, tIconIndex);
+	  	tIconFrame = VUHDO_getBarIconFrame(aButton, tIconIndex);
 
-			if (tIconInfo[2] < 0) then
-				tTimestamp = aNow;
-				VUHDO_getBarIcon(aButton, tIconIndex):SetTexture(tIconInfo[1]);
-				if (sIsName) then
-					VUHDO_getBarIconName(aButton, tIconIndex):SetText(tIconInfo[3]);
-					VUHDO_getBarIconName(aButton, tIconIndex):SetAlpha(1);
-				end
-				tIconFrame:SetScale(0.7 * sScale);
-				tIconFrame:Show();
+    	if (tIconInfo[2] < 0) then
+    		tTimestamp = aNow;
+    		VUHDO_getBarIcon(aButton, tIconIndex):SetTexture(tIconInfo[1]);
+    		if (sIsName) then
+      		VUHDO_getBarIconName(aButton, tIconIndex):SetText(tIconInfo[3]);
+      		VUHDO_getBarIconName(aButton, tIconIndex):SetAlpha(1);
+      	end
+    		tIconFrame:SetScale(0.7 * sScale);
+    		tIconFrame:Show();
 
 				if (sIsAnim) then
-					VUHDO_setDebuffAnimation(1.2);
-				end
+      		VUHDO_setDebuffAnimation(1.2);
+      	end
 
-			else
-				tTimestamp = tIconInfo[2];
-			end
+    	else
+    		tTimestamp = tIconInfo[2];
+    	end
 
-			tAliveTime = aNow - tTimestamp;
-			if (sIsAnim) then
-				if (tAliveTime <= 0.4) then
-					tIconFrame:SetScale((0.7 + (tAliveTime * 2.5)) * sScale);
-				elseif (tAliveTime <= 0.6) then
-					-- Keep size
-				elseif (tAliveTime <= 1.1) then
-					tDelta = (tAliveTime - 0.6) * 2;
-					tIconFrame:SetScale((0.7 + (1 - tDelta)) * sScale);
-				end
-			end
+      tAliveTime = aNow - tTimestamp;
+    	if (sIsAnim) then
+      	if (tAliveTime <= 0.4) then
+      		tIconFrame:SetScale((0.7 + (tAliveTime * 2.5)) * sScale);
+      	elseif (tAliveTime <= 0.6) then
+      		 -- Keep size
+      	elseif (tAliveTime <= 1.1) then
+      		tDelta = (tAliveTime - 0.6) * 2;
+      		tIconFrame:SetScale((0.7 + (1 - tDelta)) * sScale);
+      	end
+      end
 
-			if (sIsName and tAliveTime > 2) then
-				VUHDO_getBarIconName(aButton, tIconIndex):SetAlpha(0);
-			end
-		end
-	end
+      if (sIsName and tAliveTime > 2) then
+      	VUHDO_getBarIconName(aButton, tIconIndex):SetAlpha(0);
+      end
+  	end
+  end
 end
+
+
 
 --
 local tUnit, tIcon;
@@ -145,12 +150,14 @@ function VUHDO_updateAllDebuffIcons()
 
 			for tCnt = 1, sMaxIcons do
 				if (tIcon[tCnt] ~= nil and tIcon[tCnt][2] < 0) then
-					tIcon[tCnt][2] = tNow;
-				end
+		    	tIcon[tCnt][2] = tNow;
+		    end
 			end
 		end
 	end
 end
+
+
 
 -- 1 = icon, 2 = timestamp, 3 = name, 4 = expiration time, 5 = stacks
 local tCnt;
@@ -161,7 +168,7 @@ function VUHDO_addDebuffIcon(aUnit, anIcon, aName, anExpiry, aStacks, anIsCustom
 	sMaxIcons = VUHDO_CONFIG["CUSTOM_DEBUFF"].max_num;
 
 	if (VUHDO_DEBUFF_ICONS[aUnit] == nil) then
-		VUHDO_DEBUFF_ICONS[aUnit] = {};
+		VUHDO_DEBUFF_ICONS[aUnit] = { };
 	end
 
 	tOldest = GetTime();
@@ -169,7 +176,7 @@ function VUHDO_addDebuffIcon(aUnit, anIcon, aName, anExpiry, aStacks, anIsCustom
 	for tCnt = 1, sMaxIcons do
 		if (VUHDO_DEBUFF_ICONS[aUnit][tCnt] == nil) then
 			tSlot = tCnt;
-			break
+			break;
 		else
 			if (VUHDO_DEBUFF_ICONS[aUnit][tCnt][2] > 0 and VUHDO_DEBUFF_ICONS[aUnit][tCnt][2] < tOldest) then
 				tOldest = VUHDO_DEBUFF_ICONS[aUnit][tCnt][2];
@@ -178,23 +185,27 @@ function VUHDO_addDebuffIcon(aUnit, anIcon, aName, anExpiry, aStacks, anIsCustom
 		end
 	end
 
-	VUHDO_DEBUFF_ICONS[aUnit][tSlot] = {anIcon, -1, aName, anExpiry, aStacks};
+	VUHDO_DEBUFF_ICONS[aUnit][tSlot] = { anIcon, -1, aName, anExpiry, aStacks };
 	VUHDO_updateHealthBarsFor(aUnit, VUHDO_UPDATE_RANGE);
 end
+
+
 
 --
 local tCnt;
 function VUHDO_updateDebuffIcon(aUnit, anIcon, aName, anExpiry, aStacks)
 	if (VUHDO_DEBUFF_ICONS[aUnit] == nil) then
-		VUHDO_DEBUFF_ICONS[aUnit] = {};
+		VUHDO_DEBUFF_ICONS[aUnit] = { };
 	end
 
 	for tCnt = 1, sMaxIcons do
 		if (VUHDO_DEBUFF_ICONS[aUnit][tCnt] ~= nil and VUHDO_DEBUFF_ICONS[aUnit][tCnt][3] == aName) then
-			VUHDO_DEBUFF_ICONS[aUnit][tCnt] = {anIcon, VUHDO_DEBUFF_ICONS[aUnit][tCnt][2], aName, anExpiry, aStacks};
+			VUHDO_DEBUFF_ICONS[aUnit][tCnt] = { anIcon, VUHDO_DEBUFF_ICONS[aUnit][tCnt][2], aName, anExpiry, aStacks };
 		end
 	end
 end
+
+
 
 --
 local tAllButtons2, tCnt2, tButton2;
@@ -217,6 +228,8 @@ function VUHDO_removeDebuffIcon(aUnit, aName)
 		end
 	end
 end
+
+
 
 --
 local tAllButtons3, tCnt3, tButton3;
